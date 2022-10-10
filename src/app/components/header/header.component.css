@@ -1,0 +1,26 @@
+#menu .navbar-toggler{
+  background-color: #FDFEFE !important;
+}
+
+.navbar-light{
+  background-color: #2297A5 !important;
+}
+
+.btn-outline-success{
+  background-color: #949496 !important;
+  color: #FDFEFE;
+}
+
+#menu a{
+  color:  #FDFEFE;
+}
+
+#menu img{
+width: 60px;
+height: 60px;
+}
+
+#menu .active{
+  background-color: #949496;
+  border-radius: 10px;
+}

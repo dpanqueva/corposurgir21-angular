@@ -1,0 +1,23 @@
+<footer id="footer" class="w-100  d-flex  align-items-center justify-content-center flex-wrap">
+<div class="container">
+  <div class="row">
+     <div class="col-md-8" >
+       <ul class="list-group list-group-flush">
+        <div id="company-info" *ngFor="let info of left ">
+            <li class="list-group-item"><i class="{{info.logo}}"></i>{{info.informacion}}</li>
+        </div>
+      </ul>
+     </div>
+     <div class="col-md-4">
+       <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          Nuestras Redes sociales:
+          <i *ngFor="let info of right " class="{{info.logo}}"></i>
+          @Corposurgir21
+        </li>
+        <li class="list-group-item"><i class="bi bi-building">Corposurgir21 - 2022</i></li>
+      </ul>
+     </div>
+  </div>
+</div>
+</footer>

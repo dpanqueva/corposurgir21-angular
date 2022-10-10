@@ -1,0 +1,10 @@
+#footer{
+  margin-top: 10px;
+  background-color: #135A5F;
+  color: #FDFEFE;
+}
+#footer .list-group-item{
+  background-color: #135A5F;
+  color: #FDFEFE;
+  border: 0px;
+}
