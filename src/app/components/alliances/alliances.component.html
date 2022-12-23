@@ -7,7 +7,7 @@
         <img src="{{alliance.ruta_imagen}}" class="card-img-top" alt="...">
         <div class="card-body">
           <p class="card-text">{{alliance.descripcion}}</p>
-          <a href="#" class="btn btn-primary">Ver más!</a>
+          <a [routerLink]="['alianzas',alliance.nombre]" class="btn btn-primary">Ver más!</a>
         </div>
       </div>
     </div>

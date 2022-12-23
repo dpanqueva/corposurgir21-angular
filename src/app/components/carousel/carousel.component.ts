@@ -16,7 +16,6 @@ export class CarouselComponent implements OnInit {
   ngOnInit(): void {
     this.imageClient.getCentralImages().subscribe(
       image =>{
-        debugger;
         this.images = image;
       }
     );

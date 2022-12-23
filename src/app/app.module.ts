@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {HttpClientModule} from '@angular/common/http';
+import { RouterModule } from "@angular/router";
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -13,7 +15,11 @@ import { DetailComponent } from './components/category/detail/detail.component';
 
 import {CategoryService} from './core/services/category.service';
 
-import {HttpClientModule} from '@angular/common/http';
+import { ROUTES } from './common/routes.modules';
+import { HomeComponent } from './components/home/home.component';
+import { AboutService } from './core/services/about.service';
+import { AboutComponent } from './components/about/about.component';
+import { WhatsappComponent } from './components/whatsapp/whatsapp.component';
 
 @NgModule({
   declarations: [
@@ -25,13 +31,17 @@ import {HttpClientModule} from '@angular/common/http';
     FooterComponent,
     AffiliationsComponent,
     ContactComponent,
-    DetailComponent
+    DetailComponent,
+    HomeComponent,
+    AboutComponent,
+    WhatsappComponent
   ],
   imports: [
     BrowserModule,
+    RouterModule.forRoot(ROUTES),
     HttpClientModule
   ],
-  providers: [CategoryService],
+  providers: [CategoryService, AboutService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

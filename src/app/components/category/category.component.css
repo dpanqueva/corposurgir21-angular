@@ -5,3 +5,7 @@
 #categoria a{
   color: #FDFEFE;
 }
+
+.borderless{
+  --bs-list-group-border-width: none !important;
+}
