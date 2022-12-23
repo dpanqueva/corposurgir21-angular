@@ -11,7 +11,7 @@ import { AlliancesComponent } from './components/alliances/alliances.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AffiliationsComponent } from './components/affiliations/affiliations.component';
 import { ContactComponent } from './components/contact/contact.component';
-import { DetailComponent } from './components/category/detail/detail.component';
+
 
 import {CategoryService} from './core/services/category.service';
 
@@ -20,6 +20,8 @@ import { HomeComponent } from './components/home/home.component';
 import { AboutService } from './core/services/about.service';
 import { AboutComponent } from './components/about/about.component';
 import { WhatsappComponent } from './components/whatsapp/whatsapp.component';
+import { DetailComponent } from './components/alliances/detail/detail.component';
+import { ConstructionComponent } from './components/construction/construction.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { WhatsappComponent } from './components/whatsapp/whatsapp.component';
     DetailComponent,
     HomeComponent,
     AboutComponent,
-    WhatsappComponent
+    WhatsappComponent,
+    ConstructionComponent
   ],
   imports: [
     BrowserModule,

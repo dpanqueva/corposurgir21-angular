@@ -14,7 +14,6 @@ export class AboutComponent implements OnInit {
   constructor(private aboutClient: AboutService) { }
 
   ngOnInit(): void {
-    debugger;
     this.aboutClient.getAboutInformation().subscribe(aboutInfo=>{
       this.abouts = aboutInfo
     });
