@@ -22,6 +22,7 @@ import { AboutComponent } from './components/about/about.component';
 import { WhatsappComponent } from './components/whatsapp/whatsapp.component';
 import { DetailComponent } from './components/alliances/detail/detail.component';
 import { ConstructionComponent } from './components/construction/construction.component';
+import { CategoryDetailComponent } from './components/category/category-detail/category-detail.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ConstructionComponent } from './components/construction/construction.co
     HomeComponent,
     AboutComponent,
     WhatsappComponent,
-    ConstructionComponent
+    ConstructionComponent,
+    CategoryDetailComponent,
   ],
   imports: [
     BrowserModule,

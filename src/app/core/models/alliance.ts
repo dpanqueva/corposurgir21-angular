@@ -6,6 +6,7 @@ export class Alliance {
     descripcion: string;
     ruta_imagen: string;
     snactivo: string;
+    pagina_web: string;
 
     caracteristicas: Array<AllianceFeatures> = [];
 }

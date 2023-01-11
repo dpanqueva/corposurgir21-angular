@@ -1,20 +1,25 @@
-<!-- 
-
-<div class="clearfix">
-  <img src="..." class="col-md-6 float-md-end mb-3 ms-md-3" alt="...">
-
-  <p>
-    A paragraph of placeholder text. We're using it here to show the use of the clearfix class. We're adding quite a few meaningless phrases here to demonstrate how the columns interact here with the floated image.
-  </p>
-
-  <p>
-    As you can see the paragraphs gracefully wrap around the floated image. Now imagine how this would look with some actual content in here, rather than just this boring placeholder text that goes on and on, but actually conveys no tangible information at. It simply takes up space and should not really be read.
-  </p>
-
-  <p>
-    And yet, here you are, still persevering in reading this placeholder text, hoping for some more insights, or some hidden easter egg of content. A joke, perhaps. Unfortunately, there's none of that here.
-  </p>
+<div class="container">
+  <div id="fc"class="content">
+    <div class="p-5 rounded mt-3 bg-gray">
+      <h1 class="title-alliance">{{alliances.nombre | uppercase}}</h1>
+      <p class="lead inf-descrption">{{alliances.descripcion}}.</p>
+      <a class="btn btn-lg btn-dark-green {{disabled}}"  href="#" role="button">Ir a página web »</a>
+    </div>
+  </div>
+  <div class="row gx-lg-5">
+    <div class="text-center">
+      <h3>Características</h3>
+    </div>
+    <div class="col-lg-6 col-xxl-4 mb-5" *ngFor="let caracteristica of alliances.caracteristicas">
+      <div class="card bg-light border-0 h-100" >
+          <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+              <div class="feature bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-patch-check"></i></div>
+              <h2 class="fs-4 fw-bold">{{caracteristica.nombre_caracteristica}}</h2>
+              <p class="mb-0">{{caracteristica.descripcion}}</p>
+          </div>
+      </div>
+    </div>
+  </div>
 </div>
 
--->
-<app-construction></app-construction>
+<!-- <app-construction></app-construction>-->

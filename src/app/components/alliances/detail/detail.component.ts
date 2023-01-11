@@ -10,7 +10,8 @@ import { AllianceService } from 'src/app/core/services/alliance.service';
 })
 export class DetailComponent implements OnInit {
 
-  alliances: Alliance[];
+  alliances: Alliance;
+  disabled: string = "disabled";
 
   constructor(private router: Router, private activateRoute: ActivatedRoute
     , private allianceClient: AllianceService ) { }
@@ -21,13 +22,15 @@ export class DetailComponent implements OnInit {
   }
 
   loadAlliancesDetail(){
-    
     this.activateRoute.params.subscribe(params =>{
       let nombre = params['nombre']
       if(nombre){
-        this.allianceClient.getDetail(nombre).subscribe()
+        this.allianceClient.getDetail(nombre).subscribe((alliance)=> this.alliances = alliance);
       }
     });
+    if(this.alliances.pagina_web != ''){
+      this.disabled = "";
+    }
   }
 
 }

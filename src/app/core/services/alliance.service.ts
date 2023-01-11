@@ -32,7 +32,8 @@ export class AllianceService {
    */
 
   getDetail(nombre: string):Observable<Alliance>{
-    const alliance = ALLIANCES.find(data=> data.nombre = nombre);
+    debugger;
+    const alliance = ALLIANCES.find(data=> data.nombre == nombre);
     this.allianceFeatures = ALLIANCE_FEATURES.filter(data => data.alianza_id == alliance.alianza_id  && data.codigo_nombre==alliance.nombre )
     alliance.caracteristicas=this.allianceFeatures;
     return of(alliance);

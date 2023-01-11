@@ -3,7 +3,7 @@
     <ul class="list-group">
       <div id="category-information" *ngFor="let category of categories">
         <li class="list-group-item borderless">
-          <a class="nav-link active" aria-current="page" href="#">
+          <a class="nav-link active" aria-current="page" [routerLink]="['categoria',category.codigo]">
             <i class="{{category.logo}}"></i>
               {{category.nombre}}
           </a>
@@ -24,7 +24,7 @@
       <ul class="navbar-nav">
         <div id="category-information" *ngFor="let category of categories">
           <li class="nav-item" >
-            <a class="nav-link active" aria-current="page" href="#">
+            <a class="nav-link active" aria-current="page" [routerLink]="['categoria',category.codigo]">
               <i class="{{category.logo}}"></i>
               {{category.nombre}}
             </a>

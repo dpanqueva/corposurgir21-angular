@@ -1,8 +1,8 @@
-export class AllianceFeatures {
+export class CategoryDetail {
 
-    caracteristica_id: number;
+    detalle_id: number;
     descripcion: string;
-    alianza_id:number;
+    categoria_id:number;
     codigo_nombre:string;
     nombre_caracteristica:string;
 }
