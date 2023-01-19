@@ -1,23 +1,62 @@
-<footer id="footer" class="w-100  d-flex  align-items-center justify-content-center flex-wrap">
-<div class="container">
-  <div class="row">
-     <div class="col-md-8" >
-       <ul class="list-group list-group-flush">
-        <div id="company-info" *ngFor="let info of left ">
-            <li class="list-group-item"><i class="{{info.logo}}"></i>{{info.informacion}}</li>
+<!-- Footer section section-->
+<footer id="footer">
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-3 col-md-6 footer-contact">
+          <h3>Corposurgir21</h3>
+          <p>
+            Av calle 19 # 7-12 <br>
+            Bogotá, Colombia<br>
+            <br>
+            <strong>Número de contacto:</strong> (601)7043540<br>
+            <strong>Correo:</strong>Corposurgir21@gmail.com<br>
+          </p>
         </div>
-      </ul>
-     </div>
-     <div class="col-md-4">
-       <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-          Nuestras Redes sociales:
-          <i *ngFor="let info of right " class="{{info.logo}}"></i>
-          @Corposurgir21
-        </li>
-        <li class="list-group-item"><i class="bi bi-building">Corposurgir21 - 2022</i></li>
-      </ul>
-     </div>
+
+        <div class="col-lg-3 col-md-6 footer-links">
+          <h4>Links de uso</h4>
+          <ul>
+            <li><i class="bx bx-chevron-right"></i> <a href="#header">Principal</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#alliance">Alianzas</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#about">Quiénes somos</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#programs">Programas</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-6 footer-links">
+          <h4>Otros links</h4>
+          <ul>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Eventos</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">PQRS</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Nuesto equipo</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-6 footer-links">
+          <h4>Nuestras redes sociales</h4>
+          <p>@corposurgir21</p>
+          <div class="social-links mt-3">
+            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="google-plus"><i class="bi bi-google"></i></a>
+            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </div>
-</div>
+
+  <div class="container footer-bottom clearfix">
+    <div class="copyright">
+      &copy; Copyright <strong><span>Corposurgir21</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      Diseñado por <a href="https://www.linkedin.com/in/diego-alejandro-panqueva-benitez/" target="_blank">Diego Panqueva</a>
+    </div>
+  </div>
 </footer>
+<!-- End Footer section-->

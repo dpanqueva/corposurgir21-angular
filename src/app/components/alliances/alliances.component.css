@@ -1,7 +1,25 @@
-#alianzas img{
-  height: 200px;
-}
+  /*-----------------------------
+  # Allaince css
+  -------------------------------*/
+  .alliance {
+    padding: 12px 0;
+    text-align: center;
+  }
+  
+  .img {
+    max-width: 45%;
+    width: 120px;
+    transition: all 0.4s ease-in-out;
+    display: inline-block;
+    padding: 15px 0;
+    filter: grayscale(100);
+  }
+  
+  .img:hover {
+    filter: none;
+    transform: scale(1.1);
+  }
 
-#alianzas .btn-primary{
-  background-color: #2297A5 !important;
-}
+  .bg-light-gray{
+    background-color: #f3f5fa;  
+  }

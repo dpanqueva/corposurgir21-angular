@@ -1,16 +1,13 @@
-<section id="alianzas">
-  <div class="container text-center">
-    <p class="h1">Nuestras alianzas</p>
-    <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" *ngFor="let alliance of alliances">
-        <div class="card mb-3">
-          <img src="{{alliance.ruta_imagen}}" class="card-img-top" alt="...">
-          <div class="card-body">
-            <p class="card-text">{{alliance.descripcion}}</p>
-            <a [routerLink]="['alianzas',alliance.nombre]" class="btn btn-primary">Ver más!</a>
-          </div>
-        </div>
+<!-- Alliance section-->
+<section id="alliance" class="alliance bg-light-gray">
+  <div class="container">
+    <div class="row" data-aos="zoom-in">
+      <div class="col-lg-4 d-flex align-items-center justify-content-center" *ngFor="let alliance of alliances">
+        <a [routerLink]="['alianzas',alliance.nombre]" class="img">
+          <img src="{{alliance.ruta_imagen}}" class="img-fluid rounded-circle link-img" alt="">
+        </a>  
       </div>
     </div>
   </div>
 </section>
+<!-- End Alliance section-->

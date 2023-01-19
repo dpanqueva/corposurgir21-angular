@@ -1,38 +1,16 @@
-<section id="categoria-full">
-  <div class="container text-center">
-    <ul class="list-group">
-      <div id="category-information" *ngFor="let category of categories">
-        <li class="list-group-item borderless">
-          <a class="nav-link active" aria-current="page" [routerLink]="['categoria',category.codigo]">
-            <i class="{{category.logo}}"></i>
-              {{category.nombre}}
-          </a>
-        </li>
-      </div>
-   </ul>
-</div>
-</section>
-<section id="categoria">
-<div class="container">
-  <nav class="navbar navbar-expand-lg bg-green text-white">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#"><i class="bi bi-card-list"></i></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <div id="category-information" *ngFor="let category of categories">
-          <li class="nav-item" >
-            <a class="nav-link active" aria-current="page" [routerLink]="['categoria',category.codigo]">
-              <i class="{{category.logo}}"></i>
-              {{category.nombre}}
-            </a>
-          </li>
+<section id="programs" class="programs">
+  <div class="container">
+    <h3 class="text-center text-white">-Programas-</h3>
+    <hr class="text-white">
+    <div class="row">
+      <div class="col-xl-3 col-md-6 d-flex align-items-stretch p-3" data-aos="zoom-in" data-aos-delay="100" *ngFor="let category of categories">
+        <div class="icon-box">
+          <div class="icon"><i class="{{category.logo}}"></i></div>
+          <h4><a [routerLink]="['categoria',category.codigo]">{{category.nombre}}</a></h4>
+          <p class="text-justify">{{category.descripcion}}</p>
         </div>
-      </ul>
+      </div>
     </div>
   </div>
-  </nav>
-</div>
 </section>
+<!-- End Programs section-->

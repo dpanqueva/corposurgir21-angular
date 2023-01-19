@@ -1,51 +1,26 @@
-.content{
+  /*-----------------------------
+  # About css
+  -------------------------------*/
+  .bg-green-corporate{
+    background-color: #135a5f!important;
+    color: #ffffff;
+  }
+
+  #about{
     padding-top: 5px;
-    padding-bottom: 5px;
-    margin-top: 70px;
-}
+  }
 
-.info-nosotros{
-    text-align: justify;
-}
-
-.card-title, .card-subtitle, .logo-imagen, .card-text{
-    color: #FDFEFE !important;
-}
-
-.azul-corporativo{
-    background-color: #2297A5;
-}
-
-.verde-corporativo{
-    background-color: #58812C;
-}
-
-.gris-corporativo{
-    background-color: #949496;
-}
-
-.azul-oscuro-corporativo{
-    background-color: #135A5F;
-}
-
-.azul-corporativo, .azul-oscuro-corporativo, .gris-corporativo, .verde-corporativo {
-    border: solid 2px #000000;
-}
-
-.card-text{
-    text-align: justify;
-}
-
-.feature {
+  .feature {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     height: 4rem;
     width: 4rem;
     font-size: 2rem;
-    background-color: #135A5F !important;
+    background-color: #58812c !important;
 }
 
 .text-justify{
     text-align: justify;
 }
+
