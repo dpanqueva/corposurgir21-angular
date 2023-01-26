@@ -4,6 +4,5 @@ export class CentralImage {
     nombre: string;
     ruta_imagen: string;
     snactivo: string;
-    imagen_central: string;
 
 }

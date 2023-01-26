@@ -25,12 +25,16 @@ export class DetailComponent implements OnInit {
     this.activateRoute.params.subscribe(params =>{
       let nombre = params['nombre']
       if(nombre){
-        this.allianceClient.getDetail(nombre).subscribe((alliance)=> this.alliances = alliance);
+        this.allianceClient.getDetail(nombre).subscribe(
+          (alliance)=> {
+          this.alliances = alliance;
+          if(this.alliances.pagina_web != null){
+            this.disabled = "";
+          }
+        });
       }
     });
-    if(this.alliances.pagina_web != ''){
-      this.disabled = "";
-    }
+    
   }
 
 }
