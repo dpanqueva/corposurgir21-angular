@@ -1,17 +1,18 @@
 <!-- Footer section section-->
-<footer id="footer">
+<footer id="footer"*ngIf="infoCompany">
   <div class="footer-top">
     <div class="container">
       <div class="row">
 
         <div class="col-lg-3 col-md-6 footer-contact">
-          <h3>Corposurgir21</h3>
+          <h3>{{infoCompany.nombre_empresa}}</h3>
           <p>
-            Av calle 19 # 7-12 <br>
-            Bogotá, Colombia<br>
+            {{infoCompany.direccion}} <br>
+            {{infoCompany.ciudad_pais}}<br>
             <br>
-            <strong>Número de contacto:</strong> (601)7043540<br>
-            <strong>Correo:</strong>Corposurgir21@gmail.com<br>
+            <strong>Número de fijo:</strong> {{infoCompany.numero_fijo}}<br>
+            <strong>Número de celular:</strong> {{infoCompany.numero_celular}}<br>
+            <strong>Correo:</strong>{{infoCompany.correo}}<br>
           </p>
         </div>
 

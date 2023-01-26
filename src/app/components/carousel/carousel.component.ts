@@ -9,16 +9,9 @@ import { CentralImageService } from 'src/app/core/services/central-image.service
 })
 export class CarouselComponent implements OnInit {
 
-  images: CentralImage[];
-
-  constructor(private imageClient: CentralImageService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.imageClient.getCentralImages().subscribe(
-      image =>{
-        this.images = image;
-      }
-    );
   }
 
 }
