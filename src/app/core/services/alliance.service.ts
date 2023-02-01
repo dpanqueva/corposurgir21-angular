@@ -4,13 +4,14 @@ import {Observable, of} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import { Alliance } from '../models/alliance';
 import { AllianceFeatures } from '../models/alliance.features';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AllianceService {
 
-  private urlEndPoint: string = 'http://localhost:8100/alliance';
+  private urlEndPoint: string = environment.base_url + 'alliance';
 
   constructor(private http: HttpClient) { }
 

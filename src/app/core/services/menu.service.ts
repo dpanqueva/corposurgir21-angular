@@ -4,13 +4,14 @@ import {Observable, of} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import { Menu } from '../models/menu';
 import { MENU } from '../DATA/menu.json';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MenuService {
 
-  private urlEndPoint: string = 'http://localhost:8100/menu'
+  private urlEndPoint: string = environment.base_url + 'menu'
   constructor(private http: HttpClient) { }
 
   getMenus(): Observable<Menu[]>{

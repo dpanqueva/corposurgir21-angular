@@ -3,14 +3,14 @@ import { Injectable } from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import { About } from '../models/about';
-import { ABOUT } from '../DATA/about.json';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AboutService {
 
-  private urlEndPoint: string = 'http://localhost:8100/about-info';
+  private urlEndPoint: string = environment.base_url + 'about-info';
 
   constructor(private http: HttpClient) { }
 
