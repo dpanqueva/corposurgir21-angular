@@ -18,7 +18,6 @@ export class FooterComponent implements OnInit {
     this.companyInfoClient.getCompanyInfo().subscribe(
       info =>{
        this.infoCompany = info;
-       console.log(this.infoCompany )
       }
     );
   }
