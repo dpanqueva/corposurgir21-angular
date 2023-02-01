@@ -10,13 +10,13 @@ import { ABOUT } from '../DATA/about.json';
 })
 export class AboutService {
 
-  private urlEndPoint: string = 'http://localhost:8100/about';
+  private urlEndPoint: string = 'http://localhost:8100/about-info';
 
   constructor(private http: HttpClient) { }
 
   getAboutInformation(): Observable<About[]>{
-     //let about = this.http.get<About[]>(this.urlEndPoint);
-    //return about;
-    return of(ABOUT);
+     let about = this.http.get<About[]>(this.urlEndPoint);
+    return about;
+    //return of(ABOUT);
   }
 }

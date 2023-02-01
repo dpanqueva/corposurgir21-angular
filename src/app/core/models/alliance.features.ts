@@ -1,8 +1,12 @@
 export class AllianceFeatures {
 
-    caracteristica_id: number;
+    alianza_caracteristica_id: number;
+
     descripcion: string;
-    alianza_id:number;
-    codigo_nombre:string;
-    nombre_caracteristica:string;
+
+    alianza_id: number;
+
+    codigo_nombre: string;
+    
+    nombre_caracteristica: string;
 }

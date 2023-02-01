@@ -16,11 +16,16 @@ export class CategoryDetailComponent implements OnInit {
     ,private categoryClient: CategoryService) { }
 
   ngOnInit(): void {
-    debugger
     this.activateRoute.params.subscribe(params =>{
       let nombre = params['nombre']
       if(nombre){
-        this.categoryClient.getDetail(nombre).subscribe((category)=> this.categories = category);
+        this.categoryClient.getDetail(nombre)
+        .subscribe(
+          (category) =>{
+            this.categories = category
+          }
+        );
+        
       }
     });
   }

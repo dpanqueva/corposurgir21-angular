@@ -1,8 +1,20 @@
+import { CompanyInfoFeatures } from "./company.info.features";
+
 export class CompanyInfo {
 
-    logo: string;
-    posicion: string;
-    informacion: string;
-    nombre: string;
-    snactivo: string;
+    info_empresa_id: number;
+
+    nombre_empresa: string;
+
+    direccion: string;
+
+    ciudad_pais: string;
+
+    numero_fijo: string;
+
+    numero_celular: string;
+
+    correo: string;
+
+    caracteristicas: Array<CompanyInfoFeatures> = [];
 }

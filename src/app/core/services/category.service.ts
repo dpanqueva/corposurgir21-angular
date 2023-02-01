@@ -3,8 +3,6 @@ import {Category} from '../models/category';
 
 import {Observable,of} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
-import { CATEGORY } from '../DATA/category.json';
-import { CATEGORY_FEATURE } from '../DATA/category.feature.json';
 
 @Injectable({
   providedIn: 'root'
@@ -12,19 +10,16 @@ import { CATEGORY_FEATURE } from '../DATA/category.feature.json';
 export class CategoryService {
 
   private urlEndPoint: string = 'http://localhost:8100/category'
+    
   constructor(private http: HttpClient) { }
 
   getCategories(): Observable<Category[]>{
-   // let category = this.http.get<Category[]>(this.urlEndPoint);
-    //return category;
-    return of(CATEGORY);
+   let category = this.http.get<Category[]>(this.urlEndPoint);
+   return category;
   }
 
   getDetail(nombre: string):Observable<Category>{
-    debugger
-    const categoryObj = CATEGORY.find(data=> data.codigo == nombre);
-    const categoryDetail = CATEGORY_FEATURE.filter(data => data.categoria_id == categoryObj.categoria_id  && data.codigo_nombre==categoryObj.codigo )
-    categoryObj.caracteristicas=categoryDetail;
-    return of(categoryObj);
+    let category = this.http.get<Category>(this.urlEndPoint.concat('-feature').concat('/').concat(nombre));
+    return category;
   }
 }

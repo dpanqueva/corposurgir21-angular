@@ -9,16 +9,16 @@ import { CompanyInfoService } from 'src/app/core/services/company-info.service';
 })
 export class FooterComponent implements OnInit {
 
-  left:CompanyInfo[];
-  right: CompanyInfo[];
+  infoCompany: CompanyInfo;
 
   constructor(private companyInfoClient: CompanyInfoService) { }
 
   ngOnInit(): void {
+    debugger
     this.companyInfoClient.getCompanyInfo().subscribe(
       info =>{
-        this.left=info.filter(leftP => leftP.posicion == 'IZQUIERDA');
-        this.right=info.filter(rigthP => rigthP.posicion == 'DERECHA');
+       this.infoCompany = info;
+       console.log(this.infoCompany )
       }
     );
   }
