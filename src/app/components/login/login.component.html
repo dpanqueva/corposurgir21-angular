@@ -1,0 +1,67 @@
+<!-- Login section-->
+<section class="login-section" id="login-section">
+   
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                <h1>Bienvenido</h1>
+                <div class="feature text-white rounded-3 mb-4 mt-n4"><i class="bi bi-person-badge"></i></div>
+            </div>
+            <div class="col-lg-8 col-md-12 col-sm-12" >
+                <ul class="alert alert-danger" *ngIf="errors?.length > 0">
+                    <li *ngFor="let error of errors">
+                        {{error}}
+                    </li>
+                </ul>
+                <form #loginForm="ngForm">
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                      <input type="email" id="formEmail" class="form-control form-control-lg" 
+                        [(ngModel)]="formLoginData.correo" name="correo" email
+                        placeholder="Ingrese su correo" 
+                        minlength="8" required
+                         #correo="ngModel" />
+                      <label class="form-label" for="formEmail">Correo</label>
+                      <div  class="alert alert-warning" *ngIf="correo.invalid && (correo.dirty || correo.touched)">
+                        <div *ngIf="correo.errors.required">
+                            El campo Correo es requerido
+                        </div>
+                        <div *ngIf="correo.errors.minlength">
+                            El campo Correo debe tener al menos 8 caracteres
+                        </div>
+                        <div *ngIf="correo.errors.email">
+                            El campo Correo debe tener un formato valido
+                        </div>
+                      </div>
+                    </div>
+          
+                    <!-- Password input -->
+                    <div class="form-outline mb-3">
+                      <input type="password" id="formPassword" class="form-control form-control-lg"
+                        [(ngModel)]="formLoginData.clave" name="clave"
+                        placeholder="Ingrese su clave" required
+                        minlength="6" maxlength="50"
+                        #clave="ngModel" />
+                      <label class="form-label" for="formPassword">Clave</label>
+                      <div  class="alert alert-warning" *ngIf="clave.invalid && (clave.dirty || clave.touched)">
+                        <div *ngIf="clave.errors.required">
+                            El campo clave es requerido
+                        </div>
+                        <div *ngIf="clave.errors.maxlength">
+                            El campo Clave debe hasta 50 caracteres
+                        </div>
+                        <div *ngIf="clave.errors.minlength">
+                            El campo Clave debe tener al menos 6 caracteres
+                        </div>
+                      </div>
+                    </div>
+         
+                    <div class="text-center text-lg-start mt-4 pt-2">
+                      <button class="btn btn-lg bg-corporative-blue text-white" (click)="loginAccess()" [disabled]="!loginForm.form.valid">Acceder</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+  <!-- Login section-->

@@ -1,0 +1,41 @@
+<section id="about-table" class="about-table">
+    <div class="container">
+        <div class="create-button">
+            <button class="btn bg-green" [routerLink]="['/modulo-quienes-somos/form']">Crear</button>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Titulo</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Logo</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let aboutItem of aboutList | paginate: { itemsPerPage: 5, currentPage: p }">
+                    <th scope="row">{{aboutItem.quienes_somos_id}}</th>
+                    <td>{{aboutItem.titulo}}</td>
+                    <td>{{aboutItem.descripcion}}</td>
+                    <td>{{aboutItem.logo}}</td>
+                    <td>
+                        <button class="btn bg-azul"
+                            [routerLink]="['/modulo-quienes-somos/form/',aboutItem.quienes_somos_id]">Editar</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" (click)="deleteAboutInformation(aboutItem)">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <ul class="pagination justify-content-center">
+            <pagination-controls (pageChange)="p = $event" responsive="true" previousLabel="Anterior"
+                nextLabel="Siguiente">
+            </pagination-controls>
+
+        </ul>
+
+    </div>
+</section>

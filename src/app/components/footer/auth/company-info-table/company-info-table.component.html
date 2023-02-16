@@ -1,0 +1,47 @@
+<section id="company-info-table" class="company-info-table">
+    <div class="container">
+        <div class="create-button">
+            <button class="btn bg-green" [routerLink]="['/modulo-informacion-empresa/form']">Crear</button>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre empresa</th>
+                    <th scope="col">Dirección</th>
+                    <th scope="col">Ciudad / País</th>
+                    <th scope="col"># fijo</th>
+                    <th scope="col"># ceular</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let infoCompany of infoCompany | paginate: { itemsPerPage: 5, currentPage: p }">
+                    <th scope="row">{{infoCompany.info_empresa_id}}</th>
+                    <td>{{infoCompany.nombre_empresa}}</td>
+                    <td>{{infoCompany.direccion}}</td>
+                    <td>{{infoCompany.ciudad_pais}}</td>
+                    <td>{{infoCompany.numero_fijo}}</td>
+                    <td>{{infoCompany.numero_celular}}</td>
+                    <td class="email-size">{{infoCompany.correo}}</td>
+                    <td>
+                        <button class="btn bg-azul"
+                            [routerLink]="['/modulo-informacion-empresa/form/',infoCompany.info_empresa_id]">Editar</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" (click)="deleteCompanyInfo(infoCompany)">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <ul class="pagination justify-content-center">
+            <pagination-controls (pageChange)="p = $event" responsive="true" previousLabel="Anterior"
+                nextLabel="Siguiente">
+            </pagination-controls>
+
+        </ul>
+
+    </div>
+</section>

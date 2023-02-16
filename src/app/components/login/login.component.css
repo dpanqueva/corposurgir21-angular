@@ -1,0 +1,17 @@
+#login-section{
+    margin-top: 80px;
+}
+
+.feature {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 14rem;
+    width: 14rem;
+    font-size: 10rem;
+    background-color: #949496 !important;
+}
+
+.bg-corporative-blue{
+    background-color: #135a5f !important;
+}

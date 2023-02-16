@@ -14,8 +14,7 @@ export class FooterComponent implements OnInit {
   constructor(private companyInfoClient: CompanyInfoService) { }
 
   ngOnInit(): void {
-    debugger
-    this.companyInfoClient.getCompanyInfo().subscribe(
+    this.companyInfoClient.getCompanyInfo('1').subscribe(
       info =>{
        this.infoCompany = info;
       }

@@ -1,4 +1,4 @@
-import { CategoryDetail } from "./category.detail";
+import { CategoryFeature } from "./category.feature";
 
 export class Category {
   categoria_id: number;
@@ -7,11 +7,9 @@ export class Category {
 
   codigo: string;
 
-  snactivo: string;
-
   logo: string;
 
   descripcion:string;
   
-  caracteristicas: Array<CategoryDetail> = [];
+  caracteristicas: Array<CategoryFeature> = [];
 }

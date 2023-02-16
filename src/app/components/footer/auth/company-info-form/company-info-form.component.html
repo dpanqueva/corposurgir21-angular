@@ -1,0 +1,67 @@
+<section id="company-info-admin-form" class="company-info-admin-form">
+    <div class="container">
+        <h2 class="text-center">Formulario información empresa</h2>
+        <ul class="alert alert-danger" *ngIf="errors?.length > 0">
+            <li *ngFor="let error of errors">
+                {{error}}
+            </li>
+        </ul>
+        <form class="was-validated" #formCompanyInfo="ngForm">
+
+            <div class="mb-3">
+                <label for="companyName" class="form-label">Nombre empresa</label>
+                <input type="text" class="form-control" id="companyName" placeholder="Nombre de la empresa"
+                    required [(ngModel)]="companyInfo.nombre_empresa" name="nombre_empresa">
+                <div class="invalid-feedback">
+                    Por favor ingrese el nombre de la empresa.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="companyInfoAddress" class="form-label">Dirección</label>
+                <input type="text" class="form-control" id="companyInfoAddress" placeholder="Dirección de la empresa" required
+                    [(ngModel)]="companyInfo.direccion" name="direccion">
+                <div class="invalid-feedback">
+                    Por favor ingrese la dirección de la empresa
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="companyInfoCityCountry" class="form-label">Ciudad, País</label>
+                <input type="text" class="form-control" id="companyInfoCityCountry" placeholder="Bogotá, Colombia" required
+                    [(ngModel)]="companyInfo.ciudad_pais" name="ciudad_pais">
+                <div class="invalid-feedback">
+                    Por favor ingrese la ciudad y el país de la empresa
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="companyInfoHouseNumber" class="form-label">Número fijo</label>
+                <input type="text" class="form-control" id="companyInfoHouseNumber" placeholder="(601) 1234567" required
+                    [(ngModel)]="companyInfo.numero_fijo" name="numero_fijo">
+                <div class="invalid-feedback">
+                    Por favor ingrese el número fijo de la empresa
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="companyInfoMovilNumber" class="form-label">Número celular</label>
+                <input type="text" class="form-control" id="companyInfoMovilNumber" placeholder="3219876543" required
+                    [(ngModel)]="companyInfo.numero_celular" name="numero_celular">
+                <div class="invalid-feedback">
+                    Por favor ingrese el número celular de la empresa
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="companyInfoEmail" class="form-label">Correo de la empresa</label>
+                <input type="text" class="form-control" id="companyInfoEmail" placeholder="miempresa@dominio.com" required email
+                    [(ngModel)]="companyInfo.correo" name="correo">
+                <div class="invalid-feedback">
+                    Por favor ingrese el correo de la empresa
+                </div>
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-primary" type="submit" (click)="createAboutInformation()"
+                    *ngIf="!companyInfo.info_empresa_id else elseBlock" [disabled]="!formCompanyInfo.form.valid">Crear</button>
+                <ng-template #elseBlock><button class="btn btn-primary" type="submit" (click)="updateAboutInformation()"
+                        [disabled]="!formCompanyInfo.form.valid">Editar</button></ng-template>
+            </div>
+        </form>
+    </div>
+</section>

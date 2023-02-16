@@ -1,0 +1,18 @@
+#home-admin{
+    margin-top: 100px;
+    height: auto;
+}
+
+.bg-dark-green{
+    background-color: #135a5f;
+    color: #ffffff;
+}
+
+
+@media (max-width: 991px) {
+    #home-admin {
+      margin-top: 80px;
+      height: auto;
+      text-align: center;
+    }
+}
