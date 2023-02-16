@@ -4,7 +4,13 @@
 
 export const environment = {
   production: false,
-  base_url: 'http://localhost:8100/'
+  base_url: 'http://localhost:8100/',
+  mensaje_error: 'No se ha podido acceder a la información solicitada.',
+  mensaje_creado_ok: 'Recurso creado con éxito.',
+  mensaje_editado_ok: 'Recurso creado con éxito.',
+  mensaje_fallido_fail: 'El recurso al que desea modificar no existe, por lo tanto, no fue modificado.',
+  mensaje_no_encontrado: 'Recurso que desea buscar no existe.',
+  mensaje_internal_error: 'Ups! Hemos presentado un error, por favor intente más tarde.'
 };
 
 /*

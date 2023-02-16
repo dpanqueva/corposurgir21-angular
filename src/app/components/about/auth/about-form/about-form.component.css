@@ -1,0 +1,18 @@
+#about-admin-form {
+    margin-top: 80px;
+    height: auto;
+    padding: 10px;
+}
+
+.bg-azul{
+    background-color: #2297a5;
+    color: #ffffff;
+  }
+
+@media (max-width: 991px) {
+    #about-admin-form {
+        margin-top: 80px;
+        height: auto;
+        text-align: center;
+    }
+}

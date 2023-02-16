@@ -2,31 +2,55 @@
 <section id="header">
   <header>
     <!-- Menu section-->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top bg-blue-dark-corporative">
+    <nav class="navbar navbar-expand-sm fixed-top bg-blue-dark-corporative">
+      <!-- <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top bg-blue-dark-corporative">-->
       <div class="container-fluid">
         <a class="navbar-brand text-reset" href="#header">Corposurgir21</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link text-reset" routerLinkActive="active" aria-current="page" href="#header">Principal</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-reset" routerLinkActive="active" href="#alliance">Alianzas</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-reset" routerLinkActive="active" href="#about">Quiénes somos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-reset" routerLinkActive="active" href="#programs">Programas</a>
-            </li>
-          </ul>
+        <div class="collapse navbar-collapse me-auto" id="navbarNav">
+          <div class="menu-user" *ngIf="!isAuthenticated">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link text-reset" routerLinkActive="active" aria-current="page" href="#header">Principal</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-reset" routerLinkActive="active" href="#alliance">Alianzas</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-reset" routerLinkActive="active" href="#about">Quiénes somos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-reset" routerLinkActive="active" href="#programs">Programas</a>
+              </li>
+              <li class="nav-item" >
+                <a class="nav-link text-reset" routerLinkActive="active" [routerLink]="['/login']">Ingresar</a>
+              </li>
+            </ul>
+          </div>
+          <div class="menu-admin" *ngIf="isAuthenticated">
+            <ul class="navbar-nav navbar-right" id="navbarNav">
+              <li class="nav-item" >
+                <a class="nav-link text-reset" routerLinkActive="active" [routerLink]="['/modulo-administracion']">Principal</a>
+              </li>
+              <li class="dropdown">
+                <a class="btn bg-azul dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  {{nombre}}
+                </a>
+
+                <ul class="dropdown-menu">
+                  <button (click)="logout()" class="dropdown-item" type="submit">Salir</button>
+                </ul>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </nav>
-    <!-- End Menu section-->  
+    <!-- End Menu section-->
   </header>
   <!-- End Header section-->
 </section>

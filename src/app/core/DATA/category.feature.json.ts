@@ -1,4 +1,4 @@
-import { CategoryDetail } from "../models/category.detail";
+import { CategoryDetail } from "../models/category.feature";
 
 
 export const CATEGORY_FEATURE: CategoryDetail[]=[
