@@ -36,7 +36,7 @@ export class AboutFormComponent implements OnInit {
         {
           next: (e) => {
             this.messageService.successFullMessage(environment.mensaje_creado_ok);
-            this.router.navigate(['/modulo-quienes-somos']).then(() => { window.location.reload() });
+            this.router.navigate(['/modulo-quienes-somos']);
           },
           error: (e) => {
             if (e.status == 400) {
@@ -54,7 +54,7 @@ export class AboutFormComponent implements OnInit {
       {
         next: (e) => {
           this.messageService.successFullMessage(environment.mensaje_editado_ok);
-          this.router.navigate(['/modulo-quienes-somos']).then(() => { window.location.reload() });
+          this.router.navigate(['/modulo-quienes-somos']);
         },
         error: (e) => {
           if (e.status == 400) {

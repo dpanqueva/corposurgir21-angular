@@ -47,7 +47,6 @@ export class CompanyInfoService {
   }
 
   getCompanyInfo(companyId: string): Observable<CompanyInfo> {
-    console.log(this.urlEndPoint.concat('-feature').concat('/').concat(companyId));
     return this.http.get<CompanyInfo>(this.urlEndPoint.concat('-feature').concat('/').concat(companyId))
     .pipe(
       catchError(e => {

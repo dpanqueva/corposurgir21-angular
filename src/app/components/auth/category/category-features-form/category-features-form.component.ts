@@ -45,7 +45,7 @@ export class CategoryFeaturesFormComponent implements OnInit {
     .subscribe(
       {
         next: (e) => {
-          this.router.navigate(['/modulo-caracteristicas', this.featuresCategory.codigo_nombre]).then(() => { window.location.reload() });
+          this.router.navigate(['/modulo-caracteristicas', this.featuresCategory.codigo_nombre]);
           this.messageService.successFullMessage(environment.mensaje_creado_ok);
         },
         error: (e) => {
@@ -64,7 +64,7 @@ export class CategoryFeaturesFormComponent implements OnInit {
     .subscribe(
       {
         next: (e) => {
-          this.router.navigate(['/modulo-caracteristicas',this.featuresCategory.codigo_nombre]).then(() => { window.location.reload() });
+          this.router.navigate(['/modulo-caracteristicas',this.featuresCategory.codigo_nombre]);
           this.messageService.successFullMessage(environment.mensaje_creado_ok);
         },
         error: (e) => {

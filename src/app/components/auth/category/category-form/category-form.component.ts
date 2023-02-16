@@ -36,7 +36,7 @@ export class CategoryFormComponent implements OnInit {
       .subscribe(
         {
           next: (e) => {
-            this.router.navigate(['/modulo-categoria']).then(() => { window.location.reload() });
+            this.router.navigate(['/modulo-categoria']);
             this.messageService.successFullMessage(environment.mensaje_creado_ok);
           },
           error: (e) => {
@@ -56,7 +56,7 @@ export class CategoryFormComponent implements OnInit {
       .subscribe(
         {
           next: (e) => {
-            this.router.navigate(['/modulo-categoria']).then(() => { window.location.reload() });
+            this.router.navigate(['/modulo-categoria']);
             this.messageService.successFullMessage(environment.mensaje_creado_ok);
           },
           error: (e) => {

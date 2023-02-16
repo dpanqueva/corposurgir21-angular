@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
         next: (e)=>{ 
           this.loginService.saveToken(e);
           this.loginService.saveUser(e);
-          this.router.navigate(['/modulo-administracion']);
+          this.router.navigate(['/modulo-administracion']).then(()=>{window.location.reload()});
           this.messageService.successFullMessage('Bienvenido '.concat( e.nombre).concat(" ").concat(e.apellido));
         },
         error: (e)=>{

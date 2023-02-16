@@ -37,7 +37,7 @@ export class CompanyInfoFormComponent implements OnInit {
         {
           next: (e) => {
             this.messageService.successFullMessage(environment.mensaje_creado_ok);
-            this.router.navigate(['/modulo-informacion-empresa']).then(() => { window.location.reload() });
+            this.router.navigate(['/modulo-informacion-empresa']);
           },
           error: (e) => {
             if (e.status == 400) {
@@ -53,7 +53,7 @@ export class CompanyInfoFormComponent implements OnInit {
         {
           next: (e) => {
             this.messageService.successFullMessage(environment.mensaje_editado_ok);
-            this.router.navigate(['/modulo-informacion-empresa']).then(() => { window.location.reload() });
+            this.router.navigate(['/modulo-informacion-empresa']);
           },
           error: (e) => {
             if (e.status == 400) {
