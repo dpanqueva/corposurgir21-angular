@@ -10,6 +10,7 @@ import { MessageService } from './message.service';
   providedIn: 'root'
 })
 export class LoginService {
+  [x: string]: any;
 
   private _user: User = null;
   private _token: string = null;
@@ -52,17 +53,7 @@ export class LoginService {
     params.set('correo', login.correo);
     params.set('clave', login.clave);
     return this.http.post<User>(this.urlEndPoint.concat('/login'), params, { headers: this.httpHeaders })
-      .pipe(catchError(e => {
-        if (e.status == 400) {
-          return throwError(() => e);
-        }
-        if (e.status == 401) {
-          return this.errorService.warningMessage('Correo y/o clave incorrectos, intente de nuevo!');
-        }
-        console.error(e);
-        return this.errorService.errorMessage(environment.mensaje_error);
-      })
-      );
+    .pipe(catchError((e) => this.errorsApiGenerate(e)));
   }
 
   saveUser(userAuth: User): void {
@@ -91,21 +82,27 @@ export class LoginService {
       }
     );
     var response = this.http.post<void>(this.urlEndPoint.concat('/logout'), this.user, { headers: httpHeadersLogout })
-      .pipe(catchError(e => {
-        if (e.status == 400) {
-          return throwError(() => e);
-        }
-        if (e.status == 401) {
-          return this.errorService.warningMessage('Correo y/o clave incorrectos, intente de nuevo!');
-        }
-        console.error(e);
-        return this.errorService.errorMessage(environment.mensaje_error);
-      })
-    );
+    .pipe(catchError((e) => this.errorsApiGenerate(e)));
     this._token = null;
     this._user = null;
     sessionStorage.clear();
     return response;
   }
 
+  private errorsApiGenerate(e: any) {
+    if (e.status == 400) {
+      return throwError(() => e);
+    }
+    if (e.status == 404) {
+      return this.errorService.errorMessage(
+        environment.mensaje_no_encontrado
+      );
+    }
+    if (e.status == 500) {
+      return this.errorService.errorMessage(
+        environment.mensaje_internal_error
+      );
+    }
+    return this.errorService.errorMessage(environment.mensaje_error);
+  }
 }

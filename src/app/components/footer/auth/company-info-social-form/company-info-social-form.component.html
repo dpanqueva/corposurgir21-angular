@@ -1,0 +1,80 @@
+<section id="company-social-admin-form" class="company-social-admin-form">
+  <app-back-page></app-back-page>
+  <div class="container">
+    <h2 class="text-center">Formulario redes sociales</h2>
+    <ul class="alert alert-danger" *ngIf="errors?.length > 0">
+      <li *ngFor="let error of errors">
+        {{ error }}
+      </li>
+    </ul>
+    <form class="was-validated" #formSocialMedia="ngForm">
+      <div class="mb-3">
+        <label for="socialName" class="form-label">Nombre red social</label>
+        <input
+          type="text"
+          class="form-control"
+          id="socialName"
+          placeholder="Ej: Facebook, Twitter, google"
+          required
+          [(ngModel)]="companyFeatures.nombre"
+          name="nombre"
+        />
+        <div class="invalid-feedback">
+          Por favor ingrese el nombre de la red social.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="urlSocialMedia" class="form-label">Url red social</label>
+        <input
+          class="form-control"
+          id="urlSocialMedia"
+          placeholder="Ej: https://www.facebook.com/corposurgir21"
+          required
+          [(ngModel)]="companyFeatures.url_red_social"
+          name="descripcion"
+        />
+        <div class="invalid-feedback">
+          Por favor ingrese la url de la red social
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="logoActive" class="form-label">Logo</label>
+        <select
+          class="form-select"
+          id="logoActive"
+          required
+          aria-label="select example"
+          name="logo"
+          [(ngModel)]="companyFeatures.logo"
+        >
+          <option value="">Elija su opción</option>
+          <option value="bi bi-bricks">Ladrillos</option>
+          <option value="bi bi-box">Cajas</option>
+          <option value="bi bi-basket2-fill">Canasta</option>
+        </select>
+        <div class="invalid-feedback">Por favor elija su opción</div>
+      </div>
+      <div class="mb-3" *ngIf="formSocialMedia.form.valid">
+        <button
+          class="btn btn-primary"
+          type="submit"
+          (click)="createSocialMedia()"
+          *ngIf="!companyFeatures.red_social_id; else elseBlock"
+          [disabled]="!formSocialMedia.form.valid"
+        >
+          Crear
+        </button>
+        <ng-template #elseBlock
+          ><button
+            class="btn btn-primary"
+            type="submit"
+            (click)="updateSocialMedia()"
+            [disabled]="!formSocialMedia.form.valid"
+          >
+            Editar
+          </button></ng-template
+        >
+      </div>
+    </form>
+  </div>
+</section>

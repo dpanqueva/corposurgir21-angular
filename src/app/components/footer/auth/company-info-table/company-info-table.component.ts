@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CompanyInfo } from 'src/app/core/models/company-info';
-import { CompanyInfoService } from 'src/app/core/services/company-info.service';
+import { CompanyInfoService } from 'src/app/core/services/company/principal/company-info.service';
 import { MessageService } from 'src/app/core/services/message.service';
 import { environment } from 'src/environments/environment.prod';
 import Swal from 'sweetalert2';

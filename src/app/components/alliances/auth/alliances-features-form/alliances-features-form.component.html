@@ -1,0 +1,63 @@
+<section id="alliance-feature-admin-form" class="alliance-feature-admin-form">
+  <app-back-page></app-back-page>
+  <div class="container">
+    <h2 class="text-center">Formulario características de aliado</h2>
+    <ul class="alert alert-danger" *ngIf="errors?.length > 0">
+      <li *ngFor="let error of errors">
+        {{ error }}
+      </li>
+    </ul>
+    <form class="was-validated" #formFeature="ngForm">
+      <div class="mb-3">
+        <label for="featureName" class="form-label">Nombre característica</label>
+        <input
+          type="text"
+          class="form-control"
+          id="featureName"
+          placeholder="Nombre de la alianza, empresa"
+          required
+          [(ngModel)]="feature.nombre_caracteristica"
+          name="nombre"
+        />
+        <div class="invalid-feedback">
+          Por favor ingrese el nombre de la empesa aliada.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="featureDescription" class="form-label">Descripción</label>
+        <textarea
+          class="form-control"
+          id="featureDescription"
+          placeholder="Descripción de la empresa aliada"
+          required
+          [(ngModel)]="feature.descripcion"
+          name="descripcion"
+        ></textarea>
+        <div class="invalid-feedback">
+          Por favor ingrese la descripción de la empresa aliada.
+        </div>
+      </div>
+      <div class="mb-3" *ngIf="formFeature.form.valid">
+        <button
+          class="btn btn-primary"
+          type="submit"
+          (click)="createfeature()"
+          *ngIf="!feature.alianza_caracteristica_id; else elseBlock"
+          [disabled]="!formFeature.form.valid"
+        >
+          Crear
+        </button>
+        <ng-template #elseBlock
+          ><button
+            class="btn btn-primary"
+            type="submit"
+            (click)="updatefeature()"
+            [disabled]="!formFeature.form.valid"
+          >
+            Editar
+          </button></ng-template
+        >
+      </div>
+    </form>
+  </div>
+</section>

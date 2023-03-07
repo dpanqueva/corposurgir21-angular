@@ -92,7 +92,7 @@ table th {
 .bg-green{
     background-color: #58812c;
     color: #ffffff;
-}  
+}
 
 .create-button{
     padding: 3px;
@@ -112,4 +112,9 @@ table th {
         height: auto;
         text-align: center;
     }
+}
+
+
+.social-button{
+  float: right;
 }

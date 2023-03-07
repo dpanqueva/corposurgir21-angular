@@ -1,46 +1,78 @@
 <section id="about-admin-form" class="about-admin-form">
-    <div class="container">
-        <h2 class="text-center">Formulario quiénes somos</h2>
-        <ul class="alert alert-danger" *ngIf="errors?.length > 0">
-            <li *ngFor="let error of errors">
-                {{error}}
-            </li>
-        </ul>
-        <form class="was-validated" #formAbout="ngForm">
-
-            <div class="mb-3">
-                <label for="aboutTile" class="form-label">Titulo</label>
-                <input type="text" class="form-control" id="aboutTitle" placeholder="Descripción del programa"
-                    required [(ngModel)]="about.titulo" name="titulo">
-                <div class="invalid-feedback">
-                    Por favor ingrese el titulo.
-                </div>
-            </div>
-            <div class="mb-3">
-                <label for="aboutDescription" class="form-label">Descripción</label>
-                <textarea class="form-control" id="aboutDescription" placeholder="Descripción del programa" required
-                    [(ngModel)]="about.descripcion" name="descripcion"></textarea>
-                <div class="invalid-feedback">
-                    Por favor ingrese la descripción de la categoría.
-                </div>
-            </div>
-            <div class="mb-3">
-                <label for="logoActive" class="form-label">Logo</label>
-                <select class="form-select" id="logoActive" required aria-label="select example" name="logo"
-                    [(ngModel)]="about.logo">
-                    <option value="">Elija su opción</option>
-                    <option value="bi bi-bricks">Ladrillos</option>
-                    <option value="bi bi-box">Cajas</option>
-                    <option value="bi bi-basket2-fill">Canasta</option>
-                </select>
-                <div class="invalid-feedback">Por favor elija su opción</div>
-            </div>
-            <div class="mb-3">
-                <button class="btn btn-primary" type="submit" (click)="createAboutInformation()"
-                    *ngIf="!about.quienes_somos_id else elseBlock" [disabled]="!formAbout.form.valid">Crear</button>
-                <ng-template #elseBlock><button class="btn btn-primary" type="submit" (click)="updateAboutInformation()"
-                        [disabled]="!formAbout.form.valid">Editar</button></ng-template>
-            </div>
-        </form>
-    </div>
+  <app-back-page></app-back-page>
+  <div class="container">
+    <h2 class="text-center">Formulario quiénes somos</h2>
+    <ul class="alert alert-danger" *ngIf="errors?.length > 0">
+      <li *ngFor="let error of errors">
+        {{ error }}
+      </li>
+    </ul>
+    <form class="was-validated" #formAbout="ngForm">
+      <div class="mb-3">
+        <label for="aboutTile" class="form-label">Titulo</label>
+        <input
+          type="text"
+          class="form-control"
+          id="aboutTitle"
+          placeholder="Descripción del programa"
+          required
+          [(ngModel)]="about.titulo"
+          name="titulo"
+        />
+        <div class="invalid-feedback">Por favor ingrese el titulo.</div>
+      </div>
+      <div class="mb-3">
+        <label for="aboutDescription" class="form-label">Descripción</label>
+        <textarea
+          class="form-control"
+          id="aboutDescription"
+          placeholder="Descripción del programa"
+          required
+          [(ngModel)]="about.descripcion"
+          name="descripcion"
+        ></textarea>
+        <div class="invalid-feedback">
+          Por favor ingrese la descripción de la categoría.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="logoActive" class="form-label">Logo</label>
+        <select
+          class="form-select"
+          id="logoActive"
+          required
+          aria-label="select example"
+          name="logo"
+          [(ngModel)]="about.logo"
+        >
+          <option value="">Elija su opción</option>
+          <option value="bi bi-bricks">Ladrillos</option>
+          <option value="bi bi-box">Cajas</option>
+          <option value="bi bi-basket2-fill">Canasta</option>
+        </select>
+        <div class="invalid-feedback">Por favor elija su opción</div>
+      </div>
+      <div class="mb-3" *ngIf="formAbout.form.valid">
+        <button
+          class="btn btn-primary"
+          type="submit"
+          (click)="createAboutInformation()"
+          *ngIf="!about.quienes_somos_id; else elseBlock"
+          [disabled]="!formAbout.form.valid"
+        >
+          Crear
+        </button>
+        <ng-template #elseBlock
+          ><button
+            class="btn btn-primary"
+            type="submit"
+            (click)="updateAboutInformation()"
+            [disabled]="!formAbout.form.valid"
+          >
+            Editar
+          </button></ng-template
+        >
+      </div>
+    </form>
+  </div>
 </section>

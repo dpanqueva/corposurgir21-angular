@@ -2,6 +2,7 @@ export const environment = {
   production: true,
   base_url: 'https://corposurgir21-lumen-api.corposurgir21.org/public/',
   mensaje_error: 'No se ha podido acceder a la información solicitada.',
+  contacto_registrado_ok: 'Gracias por escribirnos, un asesor se contactará con usted.',
   mensaje_creado_ok: 'Recurso creado con éxito.',
   mensaje_editado_ok: 'Recurso creado con éxito.',
   mensaje_fallido_fail: 'El recurso al que desea modificar no existe, por lo tanto, no fue modificado.',

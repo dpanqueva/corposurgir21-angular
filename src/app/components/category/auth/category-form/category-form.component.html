@@ -1,0 +1,95 @@
+<section id="category-admin-form" class="category-admin-form">
+  <app-back-page></app-back-page>
+  <div class="container">
+    <h2 class="text-center">Formulario categoría</h2>
+    <ul class="alert alert-danger" *ngIf="errors?.length > 0">
+      <li *ngFor="let error of errors">
+        {{ error }}
+      </li>
+    </ul>
+    <form class="was-validated" #formCategory="ngForm">
+      <div class="mb-3">
+        <label for="categoryName" class="form-label">Nombre categoría</label>
+        <input
+          type="text"
+          class="form-control"
+          id="categoryName"
+          placeholder="Descripción del programa"
+          required
+          [(ngModel)]="category.nombre"
+          name="nombre"
+        />
+        <div class="invalid-feedback">
+          Por favor ingrese el nombre de la categoría.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="categoryDescription" class="form-label">Descripción</label>
+        <textarea
+          class="form-control"
+          id="categoryDescription"
+          placeholder="Descripción del programa"
+          required
+          [(ngModel)]="category.descripcion"
+          name="descripcion"
+        ></textarea>
+        <div class="invalid-feedback">
+          Por favor ingrese la descripción de la categoría.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="categoryCode" class="form-label">Código categoría</label>
+        <input
+          type="text"
+          class="form-control"
+          id="categoryCode"
+          aria-describedby="categoryCodeFeedback"
+          required
+          [(ngModel)]="category.codigo"
+          name="codigo"
+        />
+        <div class="invalid-feedback">
+          Por favor ingrese el código de la categoría.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="logoActive" class="form-label">Logo</label>
+        <select
+          class="form-select"
+          id="logoActive"
+          required
+          aria-label="select example"
+          name="logo"
+          [(ngModel)]="category.logo"
+        >
+          <option value="">Elija su opción</option>
+          <option value="bi bi-bricks">Ladrillos</option>
+          <option value="bi bi-box">Cajas</option>
+          <option value="bi bi-basket2-fill">Canasta</option>
+        </select>
+        <div class="invalid-feedback">Por favor elija su opción</div>
+      </div>
+      <div class="mb-3" *ngIf="formCategory.form.valid">
+        <button
+          class="btn btn-primary"
+          type="submit"
+          (click)="createCategory()"
+          *ngIf="!category.categoria_id; else elseBlock"
+          [disabled]="!formCategory.form.valid"
+        >
+          Crear
+        </button>
+        <ng-template #elseBlock
+          ><button
+            class="btn btn-primary"
+            type="submit"
+            (click)="updateCategory()"
+            [disabled]="!formCategory.form.valid"
+          >
+            Editar
+          </button></ng-template
+        >
+      </div>
+    </form>
+  </div>
+</section>

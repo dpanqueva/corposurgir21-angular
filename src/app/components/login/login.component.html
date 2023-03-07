@@ -1,6 +1,6 @@
 <!-- Login section-->
 <section class="login-section" id="login-section">
-   
+
     <div class="container">
         <div class="row">
             <div class="col-lg-4 col-md-12 col-sm-12">
@@ -16,9 +16,9 @@
                 <form #loginForm="ngForm">
                     <!-- Email input -->
                     <div class="form-outline mb-4">
-                      <input type="email" id="formEmail" class="form-control form-control-lg" 
+                      <input type="email" id="formEmail" class="form-control form-control-lg"
                         [(ngModel)]="formLoginData.correo" name="correo" email
-                        placeholder="Ingrese su correo" 
+                        placeholder="Ingrese su correo"
                         minlength="8" required
                          #correo="ngModel" />
                       <label class="form-label" for="formEmail">Correo</label>
@@ -34,7 +34,7 @@
                         </div>
                       </div>
                     </div>
-          
+
                     <!-- Password input -->
                     <div class="form-outline mb-3">
                       <input type="password" id="formPassword" class="form-control form-control-lg"
@@ -55,8 +55,8 @@
                         </div>
                       </div>
                     </div>
-         
-                    <div class="text-center text-lg-start mt-4 pt-2">
+
+                    <div class="text-center text-lg-start mt-4 pt-2" *ngIf="loginForm.form.valid">
                       <button class="btn btn-lg bg-corporative-blue text-white" (click)="loginAccess()" [disabled]="!loginForm.form.valid">Acceder</button>
                     </div>
                 </form>

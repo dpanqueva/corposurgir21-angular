@@ -1,1 +1,94 @@
-<app-construction></app-construction>
+<section id="contact-admin-form" class="contact-admin-form">
+  <div class="container">
+    <h2 class="text-center">Formulario contactanos</h2>
+    <ul class="alert alert-danger" *ngIf="errors?.length > 0">
+      <li *ngFor="let error of errors">
+        {{ error }}
+      </li>
+    </ul>
+    <form class="was-validated" #formContact="ngForm">
+      <div class="mb-3">
+        <label for="tipoContactoActive" class="form-label">Tipo contacto</label>
+        <select
+          class="form-select"
+          id="tipoContactoActive"
+          required
+          aria-label="select example"
+          name="tipo_contacto"
+          [(ngModel)]="contact.tipo_contacto"
+        >
+          <option value="">Elija su opción</option>
+          <option value="PQRS">PQRS</option>
+          <option value="AFILIACIONES">Afiliación</option>
+        </select>
+        <div class="invalid-feedback">Por favor elija su opción</div>
+      </div>
+      <div class="mb-3">
+        <label for="emailContact" class="form-label">Correo</label>
+        <input
+          type="email"
+          id="formEmail"
+          class="form-control form-control-lg"
+          [(ngModel)]="contact.correo"
+          name="correo"
+          email
+          placeholder="Ingrese su correo"
+          minlength="4"
+          required
+          #correo="ngModel"
+        />
+        <div
+          class="alert alert-warning"
+          *ngIf="correo.invalid && (correo.dirty || correo.touched)"
+        >
+          <div *ngIf="correo.errors.required">El campo Correo es requerido</div>
+          <div *ngIf="correo.errors.minlength">
+            El campo Correo debe tener al menos 8 caracteres
+          </div>
+          <div *ngIf="correo.errors.email">
+            El campo Correo debe tener un formato valido
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="contactNumber" class="form-label">Número de contacto</label>
+        <input
+          type="number"
+          class="form-control"
+          id="contactNumber"
+          placeholder="3215649877"
+          required
+          [(ngModel)]="contact.numero_contacto"
+          name="numero_contacto"
+        />
+        <div class="invalid-feedback">
+          Por favor ingrese el número de contacto.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="contactDescription" class="form-label">Mensaje</label>
+        <textarea
+          class="form-control"
+          id="contactDescription"
+          placeholder="Descripción del programa"
+          required
+          [(ngModel)]="contact.mensaje"
+          name="descripcion"
+        ></textarea>
+        <div class="invalid-feedback">
+          Por favor ingrese la descripción de la categoría.
+        </div>
+      </div>
+      <div class="mb-3" *ngIf="formContact.form.valid">
+        <button
+          class="btn btn-primary"
+          type="submit"
+          (click)="createContact()"
+          [disabled]="!formContact.form.valid"
+        >
+          Enviar
+        </button>
+      </div>
+    </form>
+  </div>
+</section>

@@ -31,22 +31,37 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/login']);
     }
   }
-  
+
   public loginAccess():void{
     this.loginService.accessLogin(this.formLoginData).subscribe(
      {
-        next: (e)=>{ 
+        next: (e)=>{
           this.loginService.saveToken(e);
           this.loginService.saveUser(e);
           this.router.navigate(['/modulo-administracion']).then(()=>{window.location.reload()});
           this.messageService.successFullMessage('Bienvenido '.concat( e.nombre).concat(" ").concat(e.apellido));
         },
-        error: (e)=>{
-          this.errors[0] = e.error.error.clave as string;
-          this.errors[1] = e.error.error.correo as string;
-        }
+        error: (e) => {
+          this.errorBadRequest(e);
+        },
     });
 
+  }
+
+  private errorBadRequest(e: any) {
+    let cont = 0;
+    if (e.status == 400) {
+      cont = this.buildLstErrors(e.error.error.clave as string, cont);
+      cont = this.buildLstErrors(e.error.error.correo as string, cont);
+    }
+  }
+
+  private buildLstErrors(e: string, cont: number) {
+    if (e !== undefined && e !== null) {
+      this.errors[cont] = e;
+      cont++;
+    }
+    return cont;
   }
 
 }

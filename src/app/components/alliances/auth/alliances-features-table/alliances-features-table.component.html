@@ -1,0 +1,41 @@
+<section id="feature-alliance-table" class="feature-alliance-table">
+  <app-back-page></app-back-page>
+  <div class="container">
+    <h2 class="text-center">Características de aliado, {{allianceNameSection | uppercase}}</h2>
+        <div class="create-button">
+            <button class="btn bg-green" (click)="onCreateFactory($event)">Crear</button>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let featuresItem of allianceFeatures | paginate: { itemsPerPage: 5, currentPage: p }">
+                    <th scope="row">{{featuresItem.alianza_caracteristica_id}}</th>
+                    <td>{{featuresItem.nombre_caracteristica}}</td>
+                    <td>{{featuresItem.descripcion}}</td>
+                    <td>
+                        <button class="btn bg-azul"
+                            (click)="onUpdateFactory(featuresItem)">Editar</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" (click)="deleteFeature(featuresItem)">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <ul class="pagination justify-content-center">
+            <pagination-controls (pageChange)="p = $event" responsive="true" previousLabel="Anterior"
+                nextLabel="Siguiente">
+            </pagination-controls>
+
+        </ul>
+
+    </div>
+</section>

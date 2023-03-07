@@ -1,0 +1,83 @@
+<section id="category-admin-form" class="category-admin-form">
+  <app-back-page></app-back-page>
+  <div class="container">
+    <h2 class="text-center">Formulario características</h2>
+    <ul class="alert alert-danger" *ngIf="errors?.length > 0">
+      <li *ngFor="let error of errors">
+        {{ error }}
+      </li>
+    </ul>
+    <form class="was-validated" #formCategoryFeatures="ngForm">
+      <div class="mb-3">
+        <label for="featuresName" class="form-label"
+          >Nombre caracteristica</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="featuresName"
+          placeholder="Nombre de la caracteristica"
+          required
+          [(ngModel)]="featuresCategory.nombre_caracteristica"
+          name="nombre_caracteristica"
+        />
+        <div class="invalid-feedback">
+          Por favor ingrese el nombre de la caracteristica.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="featuresDescription" class="form-label">Descripción</label>
+        <textarea
+          class="form-control"
+          id="featuresDescription"
+          placeholder="Descripción de la caracteristica"
+          required
+          [(ngModel)]="featuresCategory.descripcion"
+          name="descripcion"
+        ></textarea>
+        <div class="invalid-feedback">
+          Por favor ingrese la descripción de la categoría.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="featuresCode" class="form-label"
+          >Código caracteristica</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="featuresCode"
+          aria-describedby="featuresCodeFeedback"
+          required
+          [(ngModel)]="featuresCategory.codigo_nombre"
+          name="codigo_nombre"
+          placeholder="Código de la caracteristica"
+        />
+        <div class="invalid-feedback">
+          Por favor ingrese el código de la categoría.
+        </div>
+      </div>
+      <div class="mb-3" *ngIf="formCategoryFeatures.form.valid">
+        <button
+          class="btn btn-primary"
+          type="submit"
+          (click)="createFeatureCategory()"
+          *ngIf="!featuresCategory.detalle_id; else elseBlock"
+          [disabled]="!formCategoryFeatures.form.valid"
+        >
+          Crear
+        </button>
+        <ng-template #elseBlock
+          ><button
+            class="btn btn-primary"
+            type="submit"
+            (click)="updateFeatureCategory()"
+            [disabled]="!formCategoryFeatures.form.valid"
+          >
+            Editar
+          </button></ng-template
+        >
+      </div>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,116 @@
+<section id="alliance-admin-form" class="alliance-admin-form">
+  <app-back-page></app-back-page>
+  <div class="container">
+    <h2 class="text-center">Formulario alianzas</h2>
+    <ul class="alert alert-danger" *ngIf="errors?.length > 0">
+      <li *ngFor="let error of errors">
+        {{ error }}
+      </li>
+    </ul>
+    <form class="was-validated" #formAlliance="ngForm">
+      <div class="mb-3">
+        <label for="allianceName" class="form-label">Nombre</label>
+        <input
+          type="text"
+          class="form-control"
+          id="allianceName"
+          placeholder="Nombre de la alianza, empresa"
+          required
+          [(ngModel)]="alliance.nombre"
+          name="nombre"
+        />
+        <div class="invalid-feedback">
+          Por favor ingrese el nombre de la empesa aliada.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="allianceDescription" class="form-label">Descripción</label>
+        <textarea
+          class="form-control"
+          id="allianceDescription"
+          placeholder="Descripción de la empresa aliada"
+          required
+          [(ngModel)]="alliance.descripcion"
+          name="descripcion"
+        ></textarea>
+        <div class="invalid-feedback">
+          Por favor ingrese la descripción de la empresa aliada.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="alliancePageWeb" class="form-label">Página web</label>
+        <input
+          type="text"
+          class="form-control"
+          id="alliancePageWeb"
+          placeholder="www.empresa-aliada.com.co"
+          required
+          [(ngModel)]="alliance.pagina_web"
+          name="pagina_web"
+        />
+        <div class="invalid-feedback">Por favor ingrese la página aliada.</div>
+      </div>
+      <div class="mb-3">
+        <label for="allianceAddress" class="form-label">Dirección</label>
+        <input
+          type="text"
+          class="form-control"
+          id="allianceAddress"
+          placeholder="cra 1b # 1-1 sur"
+          required
+          [(ngModel)]="alliance.direccion"
+          name="direccion"
+        />
+        <div class="invalid-feedback">
+          Por favor la dirección de la empresa aliada.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="allianceQuarter" class="form-label">Barrio</label>
+        <input
+          type="text"
+          class="form-control"
+          id="allianceQuarter"
+          placeholder="Nombre del barrio"
+          required
+          [(ngModel)]="alliance.barrio"
+          name="barrio"
+        />
+        <div class="invalid-feedback">
+          Por favor ingrese el barrio de la empresa aliada.
+        </div>
+      </div>
+      <div class="input-group mb-3" *ngIf="!alliance.alianza_id">
+        <label class="input-group-text" for="inputGroupFile01">Upload</label>
+        <input
+          type="file"
+          required
+          class="form-control"
+          id="inputGroupFile01"
+          (change)="chooseFile($event)"
+        />
+      </div>
+      <div class="mb-3" *ngIf="formAlliance.form.valid">
+        <button
+          class="btn btn-primary"
+          type="submit"
+          (click)="createAlliance()"
+          *ngIf="!alliance.alianza_id; else elseBlock"
+          [disabled]="!formAlliance.form.valid"
+        >
+          Crear
+        </button>
+        <ng-template #elseBlock
+          ><button
+            class="btn btn-primary"
+            type="submit"
+            (click)="updateAlliance()"
+            [disabled]="!formAlliance.form.valid"
+          >
+            Editar
+          </button></ng-template
+        >
+      </div>
+    </form>
+  </div>
+</section>

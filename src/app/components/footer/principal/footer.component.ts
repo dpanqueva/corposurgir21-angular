@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CompanyInfo } from 'src/app/core/models/company-info';
-import { CompanyInfoService } from 'src/app/core/services/company-info.service';
+import { CompanyInfoService } from 'src/app/core/services/company/principal/company-info.service';
 
 @Component({
   selector: 'app-footer',
@@ -15,10 +15,8 @@ export class FooterComponent implements OnInit {
 
   ngOnInit(): void {
     this.companyInfoClient.getCompanyInfo('1').subscribe(
-      info =>{
-       this.infoCompany = info;
-      }
-    );
+      info =>this.infoCompany = info
+      );
   }
 
 }

@@ -1,0 +1,128 @@
+<section id="alliance-table" class="alliance-table">
+  <app-back-page></app-back-page>
+  <div class="container">
+    <h2 class="text-center">Alianzas de la empresa</h2>
+    <div class="create-button">
+      <button class="btn bg-green" [routerLink]="['/modulo-alianzas/form']">
+        Crear
+      </button>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Ruta imagen</th>
+          <th scope="col">Página Web</th>
+          <th scope="col">Características</th>
+          <th scope="col">Editar</th>
+          <th scope="col">Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="
+            let allianceItem of alliances
+              | paginate : { itemsPerPage: 5, currentPage: p }
+          "
+        >
+          <th scope="row">{{ allianceItem.alianza_id }}</th>
+          <td>{{ allianceItem.nombre }}</td>
+          <td>
+            <a
+              class="btn bg-green"
+              data-bs-toggle="modal"
+              data-bs-target="#staticBackdrop"
+              (click)="image(allianceItem)"
+              >ver</a
+            >
+          </td>
+          <td>{{ allianceItem.pagina_web }}</td>
+          <td>
+            <a
+              class="btn btn-secondary"
+              [routerLink]="['/modulo-alianzas-caracteristicas/', allianceItem.alianza_id, allianceItem.nombre]"
+              >ver</a
+            >
+          </td>
+          <td>
+            <button
+              class="btn bg-azul"
+              [routerLink]="['/modulo-alianzas/form/', allianceItem.alianza_id]"
+            >
+              Editar
+            </button>
+          </td>
+          <td>
+            <button
+              class="btn btn-danger"
+              (click)="deleteAlliance(allianceItem)"
+            >
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <ul class="pagination justify-content-center">
+      <pagination-controls
+        (pageChange)="p = $event"
+        responsive="true"
+        previousLabel="Anterior"
+        nextLabel="Siguiente"
+      >
+      </pagination-controls>
+    </ul>
+  </div>
+</section>
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Imagen</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="initChooseFile()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form class="was-validated" #formAlliance="ngForm">
+          <img src="{{ alliance.ruta_imagen }}" class="img-show" alt="" srcset="" />
+          <h4>Cambia la imagen de tu aliado</h4>
+          <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupFile01"
+              >Upload</label
+            >
+            <input
+              type="file"
+              required
+              class="form-control"
+              id="inputGroupFile01"
+              (change)="chooseFile($event)"
+            />
+          </div>
+          <div class="change-image" *ngIf="fileChoose != null">
+            <button class="btn bg-green" data-bs-dismiss="modal" [disabled]="fileChoose == null" (click)="updateImage(alliance)">Cargar imagen</button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="initChooseFile()">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

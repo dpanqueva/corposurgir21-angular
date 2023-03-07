@@ -1,0 +1,76 @@
+<section id="donation-admin-form" class="donation-admin-form">
+  <app-back-page></app-back-page>
+  <div class="container">
+    <h2 class="text-center">Formulario quiénes somos</h2>
+    <ul class="alert alert-danger" *ngIf="errors?.length > 0">
+      <li *ngFor="let error of errors">
+        {{ error }}
+      </li>
+    </ul>
+    <form class="was-validated" #formDonation="ngForm">
+      <div class="mb-3">
+        <label for="donationTile" class="form-label">Banco Entidad</label>
+        <input
+          type="text"
+          class="form-control"
+          id="donationTitle"
+          placeholder="Descripción del programa"
+          required
+          [(ngModel)]="donation.banco_entidad"
+          name="banco_entidad"
+        />
+        <div class="invalid-feedback">Por favor ingrese el banco.</div>
+      </div>
+      <div class="mb-3">
+        <label for="accountActive" class="form-label">Tipo de cuenta</label>
+        <select
+          class="form-select"
+          id="accountActive"
+          required
+          aria-label="select example"
+          name="tipo_cuenta"
+          [(ngModel)]="donation.tipo_cuenta"
+        >
+          <option value="">Elija su opción</option>
+          <option value="AHORROS">Ahorros</option>
+          <option value="CORRIENTE">Corriente</option>
+        </select>
+        <div class="invalid-feedback">Por favor elija su opción</div>
+      </div>
+      <div class="mb-3">
+        <label for="accountNumber" class="form-label"># Cuenta</label>
+        <input
+          type="text"
+          class="form-control"
+          id="accountNumber"
+          placeholder="Número de cuenta"
+          required
+          [(ngModel)]="donation.numero_cuenta"
+          name="numero_cuenta"
+        />
+        <div class="invalid-feedback">Por favor ingrese el # de cuenta del banco.</div>
+      </div>
+      <div class="mb-3" *ngIf="formDonation.form.valid">
+        <button
+          class="btn btn-primary"
+          type="submit"
+          (click)="createDonation()"
+          *ngIf="!donation.donacion_id else elseBlock"
+          [disabled]="!formDonation.form.valid"
+        >
+          Crear
+        </button>
+        <ng-template #elseBlock
+          ><button
+            class="btn btn-primary"
+            type="submit"
+            (click)="updateDonation()"
+            [disabled]="!formDonation.form.valid"
+          >
+            Editar
+          </button></ng-template
+        >
+      </div>
+    </form>
+  </div>
+</section>

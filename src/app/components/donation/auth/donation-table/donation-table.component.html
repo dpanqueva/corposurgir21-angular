@@ -1,0 +1,42 @@
+<section id="donation-table" class="donation-table">
+  <app-back-page></app-back-page>
+  <div class="container">
+    <h2 class="text-center">Información para donaciones</h2>
+        <div class="create-button">
+            <button class="btn bg-green" [routerLink]="['/modulo-informacion-bancaria/form']">Crear</button>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Entidad Bancaria</th>
+                    <th scope="col">Tipo de cuenta</th>
+                    <th scope="col">Número de cuenta</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let donationItem of donations | paginate: { itemsPerPage: 5, currentPage: p }">
+                    <th scope="row">{{donationItem.donacion_id}}</th>
+                    <td>{{donationItem.banco_entidad}}</td>
+                    <td>{{donationItem.tipo_cuenta}}</td>
+                    <td>{{donationItem.numero_cuenta}}</td>
+                    <td>
+                      <button class="btn bg-azul"
+                          [routerLink]="['/modulo-informacion-bancaria/form/',donationItem.donacion_id]">Editar</button>
+                  </td>
+                  <td>
+                      <button class="btn btn-danger" (click)="deleteDonation(donationItem)">Eliminar</button>
+                  </td>
+                </tr>
+            </tbody>
+        </table>
+        <ul class="pagination justify-content-center">
+            <pagination-controls (pageChange)="p = $event" responsive="true" previousLabel="Anterior"
+                nextLabel="Siguiente">
+            </pagination-controls>
+
+        </ul>
+    </div>
+</section>

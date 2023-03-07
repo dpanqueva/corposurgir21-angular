@@ -40,9 +40,7 @@ export class AboutFormComponent implements OnInit {
           },
           error: (e) => {
             if (e.status == 400) {
-              this.errors[0] = e.error.error.titulo as string;
-              this.errors[1] = e.error.error.logo as string;
-              this.errors[2] = e.error.error.descripcion as string;
+              this.errorBadRequest(e);
             }
           }
         });
@@ -58,12 +56,30 @@ export class AboutFormComponent implements OnInit {
         },
         error: (e) => {
           if (e.status == 400) {
-            this.errors[0] = e.error.error.titulo as string;
-            this.errors[1] = e.error.error.logo as string;
-            this.errors[2] = e.error.error.descripcion as string;
+            this.errorBadRequest(e);
           }
         }
       });
+  }
+
+  private errorBadRequest(e: any) {
+    let cont = 0;
+    if (e.status == 400) {
+      cont = this.buildLstErrors(
+        e.error.error.titulo as string,
+        cont
+      );
+      cont = this.buildLstErrors(e.error.error.logo as string, cont);
+      cont = this.buildLstErrors(e.error.error.descripcion as string, cont);
+    }
+  }
+
+  private buildLstErrors(e: string, cont: number) {
+    if (e !== undefined && e !== null) {
+      this.errors[cont] = e;
+      cont++;
+    }
+    return cont;
   }
 
 }

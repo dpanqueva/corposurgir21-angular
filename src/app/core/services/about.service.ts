@@ -32,97 +32,44 @@ export class AboutService {
 
   getAboutInformation(): Observable<About[]> {
     return this.http.get<About[]>(this.urlEndPoint, { headers: this.addAuthorizationHeader() })
-    .pipe(
-      catchError(e => {
-        console.error(e);
-        if (e.status == 400) {
-          return throwError(() => e);
-        }
-        if (e.status == 404) {
-          this.messageService.errorMessage(environment.mensaje_no_encontrado);
-        }
-        if (e.status == 500) {
-          this.messageService.errorMessage(environment.mensaje_internal_error);
-        }
-        return this.messageService.errorMessage(environment.mensaje_error);
-      })
-    );
+    .pipe(catchError((e) => this.errorsApiGenerate(e)));
 
   }
 
   getAboutInformationById(aboutId: string): Observable<About>{
     return this.http.get<About>(this.urlEndPoint.concat("/").concat(aboutId), { headers: this.addAuthorizationHeader() })
-    .pipe(
-      catchError(e => {
-        console.error(e);
-        if (e.status == 400) {
-          return throwError(() => e);
-        }
-        if (e.status == 404) {
-          this.messageService.errorMessage(environment.mensaje_no_encontrado);
-        }
-        if (e.status == 500) {
-          this.messageService.errorMessage(environment.mensaje_internal_error);
-        }
-        return this.messageService.errorMessage(environment.mensaje_error);
-      })
-    );
+    .pipe(catchError((e) => this.errorsApiGenerate(e)));
   }
 
   createAboutInformation(about: About): Observable<About> {
     return this.http.post<About>(this.urlEndPoint, about, { headers: this.addAuthorizationHeader() })
-      .pipe(
-        catchError(e => {
-          console.error(e);
-          if (e.status == 400) {
-            return throwError(() => e);
-          }
-          if (e.status == 404) {
-            this.messageService.errorMessage(environment.mensaje_no_encontrado);
-          }
-          if (e.status == 500) {
-            this.messageService.errorMessage(environment.mensaje_internal_error);
-          }
-          return this.messageService.errorMessage(environment.mensaje_error);
-        })
-      );
+    .pipe(catchError((e) => this.errorsApiGenerate(e)));
   }
 
   updateAboutInformation(aboutId: number, about:About): Observable<About>{
     return this.http.put<About>(this.urlEndPoint.concat("/").concat(aboutId.toString()), about, { headers: this.addAuthorizationHeader() })
-    .pipe(
-      catchError(e => {
-        console.error(e);
-        if (e.status == 400) {
-          return throwError(() => e);
-        }
-        if(e.status == 404){
-          this.messageService.errorMessage(environment.mensaje_no_encontrado);
-        }
-        if(e.status == 500){
-          this.messageService.errorMessage(environment.mensaje_internal_error);
-        }
-        
-        return this.messageService.errorMessage(environment.mensaje_error);
-      })
-    );
+    .pipe(catchError((e) => this.errorsApiGenerate(e)));
   }
 
   deleteAboutInformation(about: About):Observable<About>{
     return this.http.delete<About>(this.urlEndPoint.concat("/").concat(about.quienes_somos_id.toString()), { headers: this.addAuthorizationHeader() })
-    .pipe(
-      catchError(e => {
-        if (e.status == 400) {
-          return throwError(() => e);
-        }
-        if(e.status == 404){
-          this.messageService.errorMessage(environment.mensaje_no_encontrado);
-        }
-        if(e.status == 500){
-          this.messageService.errorMessage(environment.mensaje_internal_error);
-        }
-        return this.messageService.errorMessage(environment.mensaje_error);
-      })
-    );
+    .pipe(catchError((e) => this.errorsApiGenerate(e)));
+  }
+
+  private errorsApiGenerate(e: any) {
+    if (e.status == 400) {
+      return throwError(() => e);
+    }
+    if (e.status == 404) {
+      return this.messageService.errorMessage(
+        environment.mensaje_no_encontrado
+      );
+    }
+    if (e.status == 500) {
+      return this.messageService.errorMessage(
+        environment.mensaje_internal_error
+      );
+    }
+    return this.messageService.errorMessage(environment.mensaje_error);
   }
 }

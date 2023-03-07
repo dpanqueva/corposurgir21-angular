@@ -29,9 +29,8 @@
         <div class="col-lg-3 col-md-6 footer-links">
           <h4>Otros links</h4>
           <ul>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Eventos</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">PQRS</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a a href="#">Nuesto equipo</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a [routerLink]="['/informacion-donaciones']">Donaciones</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a [routerLink]="['/contactanos']">PQRS - Afiliaciones</a></li>
           </ul>
         </div>
 
@@ -39,11 +38,7 @@
           <h4>Nuestras redes sociales</h4>
           <p>@corposurgir21</p>
           <div class="social-links mt-3">
-            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="google-plus"><i class="bi bi-google"></i></a>
-            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+            <span class="social-links-attr" *ngFor="let social of infoCompany.caracteristicas"> <a href="{{social.url_red_social}}" class="{{social.nombre}}" target="_blank"><i class="{{social.logo}}"></i></a></span>
           </div>
         </div>
 

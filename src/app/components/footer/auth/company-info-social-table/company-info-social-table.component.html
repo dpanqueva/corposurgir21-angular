@@ -1,0 +1,80 @@
+<section class="social-media-table" id="social-media-table">
+  <app-back-page></app-back-page>
+  <div class="container">
+    <h2 class="text-center">Información redes sociales de la empresa</h2>
+
+    <div class="row">
+      <div class="col">
+        <div class="create-button">
+          <button
+            class="btn bg-green"
+            [routerLink]="['/modulo-informacion-empresa-redes/form']"
+          >
+            Crear
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Red social</th>
+          <th scope="col">Url</th>
+          <th scope="col">Logo</th>
+          <th scope="col">Editar</th>
+          <th scope="col">Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="
+            let infoCompany of socialMedia
+              | paginate : { itemsPerPage: 5, currentPage: p }
+          "
+        >
+          <th scope="row">{{ infoCompany.red_social_id }}</th>
+          <td>{{ infoCompany.nombre }}</td>
+          <td>
+            <a
+              href="{{ infoCompany.url_red_social }}"
+              target="_blank"
+              class="btn"
+              >Visualizar</a
+            >
+          </td>
+          <td>{{ infoCompany.logo }}</td>
+          <td>
+            <button
+              class="btn bg-azul"
+              [routerLink]="[
+                '/modulo-informacion-empresa-redes/form/',
+                infoCompany.red_social_id
+              ]"
+            >
+              Editar
+            </button>
+          </td>
+          <td>
+            <button
+              class="btn btn-danger"
+              (click)="deleteCompanyInfoSocial(infoCompany)"
+            >
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <ul class="pagination justify-content-center">
+      <pagination-controls
+        (pageChange)="p = $event"
+        responsive="true"
+        previousLabel="Anterior"
+        nextLabel="Siguiente"
+      >
+      </pagination-controls>
+    </ul>
+  </div>
+</section>
