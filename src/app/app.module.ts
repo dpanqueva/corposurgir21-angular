@@ -25,6 +25,7 @@ import { CategoryDetailComponent } from './components/category/principal/categor
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // Import library module
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { RecaptchaModule } from 'ng-recaptcha';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { SpinnerInterceptorService } from './core/services/interceptor/spinnerinterceptor.service';
 import { LoginComponent } from './components/login/login.component';
@@ -97,7 +98,8 @@ import { DonationFormComponent } from './components/donation/auth/donation-form/
     BrowserAnimationsModule,
     NgxSpinnerModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    RecaptchaModule
   ],
   providers: [
     CategoryService,

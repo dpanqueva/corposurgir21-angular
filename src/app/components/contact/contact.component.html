@@ -80,14 +80,10 @@
         </div>
       </div>
       <div class="mb-3" *ngIf="formContact.form.valid">
-        <button
-          class="btn btn-primary"
-          type="submit"
-          (click)="createContact()"
-          [disabled]="!formContact.form.valid"
-        >
-          Enviar
-        </button>
+        <re-captcha
+          (resolved)="resolved($event)"
+          siteKey="{{ siteKey }}"
+        ></re-captcha>
       </div>
     </form>
   </div>

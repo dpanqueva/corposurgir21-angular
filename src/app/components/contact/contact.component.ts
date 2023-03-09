@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Contact } from 'src/app/core/models/contact';
 import { ContactService } from 'src/app/core/services/contact.service';
@@ -13,7 +12,8 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class ContactComponent implements OnInit {
 
-  siteKey: string = "6LdRF9skAAAAAGQiIRgQ2O_tZ71lNuSVO9MppDLH";
+  siteKey: string = "6LcNxOkkAAAAAG0IlWSBL7FPPrNer_v9E_PYQHbE";
+  captcha: string;
   errors: string[] = [];
 
   contact: Contact = new Contact();
@@ -65,6 +65,13 @@ export class ContactComponent implements OnInit {
       cont++;
     }
     return cont;
+  }
+
+  resolved(response: string){
+    this.captcha= response;
+    if(this.captcha){
+      this.createContact();
+    }
   }
 
 }
