@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class ContactComponent implements OnInit {
 
-  siteKey: string = "6LcNxOkkAAAAAG0IlWSBL7FPPrNer_v9E_PYQHbE";
+  siteKey: string = "6LeF4ukkAAAAACe3QHY2C8J44oDQHslj1BcNcIiR";
   captcha: string;
   errors: string[] = [];
 
