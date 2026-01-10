@@ -52,6 +52,8 @@ import { AlliancesFeaturesTableComponent } from './components/alliances/auth/all
 import { AlliancesFeaturesFormComponent } from './components/alliances/auth/alliances-features-form/alliances-features-form.component';
 import { DonationComponent } from './components/donation/principal/donation/donation.component';
 import { DonationFormComponent } from './components/donation/auth/donation-form/donation-form.component';
+import { CommonModule } from '@angular/common';
+import { DonationTableComponent } from './components/donation/auth/donation-table/donation-table.component';
 
 
 @NgModule({
@@ -89,7 +91,8 @@ import { DonationFormComponent } from './components/donation/auth/donation-form/
     AlliancesFeaturesTableComponent,
     AlliancesFeaturesFormComponent,
     DonationComponent,
-    DonationFormComponent
+    DonationFormComponent,
+    DonationTableComponent
   ],
   imports: [
     BrowserModule,
@@ -99,7 +102,10 @@ import { DonationFormComponent } from './components/donation/auth/donation-form/
     NgxSpinnerModule,
     FormsModule,
     NgxPaginationModule,
-    RecaptchaModule
+    RecaptchaModule,
+    CommonModule,
+    RouterModule
+
   ],
   providers: [
     CategoryService,
