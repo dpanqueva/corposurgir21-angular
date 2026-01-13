@@ -1,0 +1,24 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # 1. Forzar HTTPS (aplica a www y sin www)
+  RewriteCond %{HTTPS} off
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+  # 2. Forzar www (normalizar a una sola versión)
+  RewriteCond %{HTTP_HOST} ^corposurgir21\.org$ [NC]
+  RewriteRule ^(.*)$ https://www.corposurgir21.org/$1 [R=301,L]
+
+  # 3. NO tocar archivos físicos
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # 4. NO tocar extensiones de assets
+  RewriteCond %{REQUEST_URI} !\.(css|js|map|json|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot|webp|pdf|txt|xml)$ [NC]
+
+  # 5. Redirigir todo a index.html (Angular)
+  RewriteRule ^ index.html [L,QSA]
+</IfModule>
