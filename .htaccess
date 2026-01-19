@@ -22,3 +22,398 @@
   # 5. Redirigir todo a index.html (Angular)
   RewriteRule ^ index.html [L,QSA]
 </IfModule>
+
+# posible cambio para producción
+# ============================================================================
+# .htaccess - Frontend Angular (CorpoSurgir21)
+# Ubicación: /public_html/.htaccess
+# Versión: 2.0 - Seguridad Máxima
+# Última actualización: 2026-01-18
+# ============================================================================
+
+# ----------------------------------------------------------------------------
+# SEGURIDAD - HEADERS HTTP (CRÍTICO PARA SECURITY SCORE)
+# ----------------------------------------------------------------------------
+<IfModule mod_headers.c>
+  # ========================================
+  # HSTS - HTTP Strict Transport Security
+  # Fuerza HTTPS permanentemente (1 año)
+  # ========================================
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" env=HTTPS
+  
+  # ========================================
+  # X-Frame-Options - Prevenir Clickjacking
+  # SAMEORIGIN = Solo permite frames del mismo dominio
+  # ========================================
+  Header always set X-Frame-Options "SAMEORIGIN"
+  
+  # ========================================
+  # X-Content-Type-Options
+  # Prevenir MIME type sniffing
+  # ========================================
+  Header always set X-Content-Type-Options "nosniff"
+  
+  # ========================================
+  # X-XSS-Protection
+  # Activar filtro XSS del navegador
+  # ========================================
+  Header always set X-XSS-Protection "1; mode=block"
+  
+  # ========================================
+  # Referrer-Policy
+  # Controlar qué información de referrer se envía
+  # ========================================
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  
+  # ========================================
+  # Permissions-Policy (antes Feature-Policy)
+  # Solo directivas oficialmente soportadas
+  # ========================================
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=(), autoplay=(), display-capture=(), encrypted-media=(), fullscreen=(self), picture-in-picture=()"
+  
+  # ========================================
+  # Content-Security-Policy (CSP)
+  # Configuración compatible con Angular + Bootstrap + CDN
+  # ========================================
+  # IMPORTANTE: Esta CSP permite:
+  # - Angular (tu aplicación)
+  # - Bootstrap (local y CDN jsDelivr)
+  # - Google Analytics/Tag Manager (opcional)
+  # - Google Fonts (opcional)
+  # - Tu API
+  
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com; img-src 'self' data: https: blob:; font-src 'self' data: https://cdn.jsdelivr.net https://fonts.gstatic.com; connect-src 'self' https://corposurgir21-api.corposurgir21.org https://www.google-analytics.com https://analytics.google.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; media-src 'self'; worker-src 'self' blob:; manifest-src 'self';"
+  
+  # ========================================
+  # Eliminar headers que revelan información
+  # ========================================
+  Header unset X-Powered-By
+  Header unset Server
+  Header always unset X-Powered-By
+  Header always unset Server
+  
+  # ========================================
+  # Cross-Origin Policies (Seguridad adicional)
+  # ========================================
+  Header always set Cross-Origin-Embedder-Policy "require-corp"
+  Header always set Cross-Origin-Opener-Policy "same-origin"
+  Header always set Cross-Origin-Resource-Policy "same-origin"
+</IfModule>
+
+# ----------------------------------------------------------------------------
+# ROUTING DE SPA (Single Page Application Angular)
+# ----------------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+  # Activar motor de reescritura
+  RewriteEngine On
+  RewriteBase /
+
+  # ========================================
+  # 1. FORZAR HTTPS (CRÍTICO)
+  # ========================================
+  # Redirigir HTTP a HTTPS
+  RewriteCond %{HTTPS} off
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+  # ========================================
+  # 2. FORZAR WWW (Normalización de dominio)
+  # ========================================
+  # Opción A: Forzar www (RECOMENDADO para SEO)
+  RewriteCond %{HTTP_HOST} ^corposurgir21\.org$ [NC]
+  RewriteRule ^(.*)$ https://www.corposurgir21.org/$1 [R=301,L]
+  
+  # Opción B: Forzar sin www (descomenta si prefieres esta opción)
+  # RewriteCond %{HTTP_HOST} ^www\.corposurgir21\.org$ [NC]
+  # RewriteRule ^(.*)$ https://corposurgir21.org/$1 [R=301,L]
+
+  # ========================================
+  # 3. PROTECCIÓN - Bloquear acceso a archivos sensibles
+  # ========================================
+  # Bloquear .git, .env, etc.
+  RewriteRule ^\.git - [F,L]
+  RewriteRule ^\.env - [F,L]
+  
+  # ========================================
+  # 4. PERMITIR .well-known (RFC 8615)
+  # Necesario para security.txt, acme-challenge (SSL), etc.
+  # ========================================
+  RewriteCond %{REQUEST_URI} ^/\.well-known/ [NC]
+  RewriteRule ^ - [L]
+
+  # ========================================
+  # 5. NO TOCAR archivos físicos existentes
+  # ========================================
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # ========================================
+  # 6. NO TOCAR archivos de assets
+  # ========================================
+  RewriteCond %{REQUEST_URI} !\.(css|js|map|json|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot|webp|pdf|txt|xml)$ [NC]
+
+  # ========================================
+  # 7. NO TOCAR archivos especiales
+  # ========================================
+  RewriteCond %{REQUEST_URI} !^/robots\.txt$ [NC]
+  RewriteCond %{REQUEST_URI} !^/sitemap\.xml$ [NC]
+  RewriteCond %{REQUEST_URI} !^/favicon\.ico$ [NC]
+
+  # ========================================
+  # 8. REDIRIGIR todo lo demás a index.html (Angular Router)
+  # ========================================
+  RewriteRule ^ index.html [L,QSA]
+</IfModule>
+
+# ----------------------------------------------------------------------------
+# SEGURIDAD - BLOQUEAR ACCESO A ARCHIVOS SENSIBLES
+# ----------------------------------------------------------------------------
+# Prevenir listado de directorios
+Options -Indexes
+
+# Bloquear acceso a archivos de configuración
+<FilesMatch "^\.ht|^\.env|^\.git|composer\.(json|lock)|package(-lock)?\.json|tsconfig\.json|angular\.json|\.md$|\.sh$|\.sql$|\.log$|\.bak$|\.backup$">
+  Require all denied
+</FilesMatch>
+
+# Proteger directorios específicos (si existen)
+<IfModule mod_alias.c>
+  RedirectMatch 403 /\.git
+  RedirectMatch 403 /node_modules
+  RedirectMatch 403 /src
+</IfModule>
+
+# ----------------------------------------------------------------------------
+# COMPRESIÓN GZIP (Rendimiento)
+# ----------------------------------------------------------------------------
+<IfModule mod_deflate.c>
+  # Comprimir tipos MIME específicos
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/plain
+  AddOutputFilterByType DEFLATE text/xml
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE text/javascript
+  AddOutputFilterByType DEFLATE application/xml
+  AddOutputFilterByType DEFLATE application/xhtml+xml
+  AddOutputFilterByType DEFLATE application/rss+xml
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/x-javascript
+  AddOutputFilterByType DEFLATE application/json
+  AddOutputFilterByType DEFLATE image/svg+xml
+  AddOutputFilterByType DEFLATE image/x-icon
+  AddOutputFilterByType DEFLATE font/opentype
+  AddOutputFilterByType DEFLATE font/otf
+  AddOutputFilterByType DEFLATE font/ttf
+  AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
+
+  # Excluir archivos ya comprimidos
+  SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png|webp|woff2?|zip|gz|rar|7z)$ no-gzip
+</IfModule>
+
+# ----------------------------------------------------------------------------
+# CACHE DEL NAVEGADOR (Rendimiento)
+# ----------------------------------------------------------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 month"
+
+  # ========================================
+  # HTML - SIN CACHE (siempre la última versión)
+  # ========================================
+  <FilesMatch "\.(html|htm)$">
+    ExpiresDefault "access plus 0 seconds"
+    Header set Cache-Control "no-cache, no-store, must-revalidate, max-age=0"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+  </FilesMatch>
+
+  # ========================================
+  # Archivos de Angular - SIN CACHE
+  # (Angular genera hashes automáticamente, así que son seguros para cachear)
+  # ========================================
+  <FilesMatch "^(index\.html)$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate, max-age=0"
+  </FilesMatch>
+
+  # ========================================
+  # CSS y JavaScript con hash - CACHE LARGO
+  # ========================================
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/javascript "access plus 1 year"
+
+  # ========================================
+  # Imágenes - CACHE LARGO
+  # ========================================
+  ExpiresByType image/jpg "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+
+  # ========================================
+  # Fuentes - CACHE LARGO
+  # ========================================
+  ExpiresByType font/ttf "access plus 1 year"
+  ExpiresByType font/otf "access plus 1 year"
+  ExpiresByType font/woff "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType application/font-woff "access plus 1 year"
+  ExpiresByType application/font-woff2 "access plus 1 year"
+
+  # ========================================
+  # Archivos de manifiesto - CACHE CORTO
+  # ========================================
+  ExpiresByType application/manifest+json "access plus 1 week"
+  ExpiresByType application/x-web-app-manifest+json "access plus 1 week"
+  ExpiresByType text/cache-manifest "access plus 0 seconds"
+
+  # ========================================
+  # JSON y XML - SIN CACHE
+  # ========================================
+  ExpiresByType application/json "access plus 0 seconds"
+  ExpiresByType application/xml "access plus 0 seconds"
+  ExpiresByType text/xml "access plus 0 seconds"
+
+  # ========================================
+  # Favicon - CACHE MEDIO
+  # ========================================
+  ExpiresByType image/vnd.microsoft.icon "access plus 1 month"
+</IfModule>
+
+# Cache-Control adicional para archivos con hash
+<IfModule mod_headers.c>
+  # Archivos JS/CSS con hash - cache inmutable
+  <FilesMatch "\.(js|css)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # index.html - NUNCA cachear
+  <FilesMatch "^index\.html$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate, max-age=0"
+  </FilesMatch>
+  
+  # robots.txt, sitemap.xml - cache corto
+  <FilesMatch "^(robots\.txt|sitemap\.xml)$">
+    Header set Cache-Control "public, max-age=86400"
+  </FilesMatch>
+  
+  # security.txt - cache 1 día
+  <FilesMatch "^security\.txt$">
+    Header set Cache-Control "public, max-age=86400"
+    Header set Content-Type "text/plain; charset=utf-8"
+  </FilesMatch>
+</IfModule>
+
+# ----------------------------------------------------------------------------
+# TIPOS MIME CORRECTOS
+# ----------------------------------------------------------------------------
+<IfModule mod_mime.c>
+  # JavaScript
+  AddType application/javascript js mjs
+  AddType application/json json map
+
+  # Fuentes
+  AddType font/woff woff
+  AddType font/woff2 woff2
+  AddType font/ttf ttf
+  AddType font/otf otf
+  AddType application/vnd.ms-fontobject eot
+
+  # Imágenes
+  AddType image/svg+xml svg svgz
+  AddType image/webp webp
+  AddType image/avif avif
+
+  # Manifest
+  AddType application/manifest+json webmanifest
+  AddType text/cache-manifest appcache
+  
+  # Otros
+  AddType text/plain txt
+  AddType application/xml xml
+</IfModule>
+
+# ----------------------------------------------------------------------------
+# ENCODING UTF-8
+# ----------------------------------------------------------------------------
+<IfModule mod_mime.c>
+  AddDefaultCharset utf-8
+  AddCharset utf-8 .html .css .js .json .xml .txt .svg
+</IfModule>
+
+# ----------------------------------------------------------------------------
+# PROTECCIÓN CONTRA ATAQUES COMUNES
+# ----------------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+  # Bloquear peticiones con query strings maliciosas
+  RewriteCond %{QUERY_STRING} (<|%3C).*script.*(>|%3E) [NC,OR]
+  RewriteCond %{QUERY_STRING} GLOBALS(=|[|%[0-9A-Z]{0,2}) [OR]
+  RewriteCond %{QUERY_STRING} _REQUEST(=|[|%[0-9A-Z]{0,2}) [OR]
+  RewriteCond %{QUERY_STRING} base64_encode.*\(.*\) [NC,OR]
+  RewriteCond %{QUERY_STRING} (\<|%3C).*iframe.*(\>|%3E) [NC,OR]
+  RewriteCond %{QUERY_STRING} php://input [NC,OR]
+  RewriteCond %{QUERY_STRING} mosConfig_[a-zA-Z_]{1,21}(=|%3D) [OR]
+  RewriteCond %{QUERY_STRING} ^.*(\[|\]|\(|\)|<|>|ê|"|;|\?|\*|=$).* [NC,OR]
+  RewriteCond %{QUERY_STRING} (NULL|OUTFILE|LOAD_FILE) [NC]
+  RewriteRule ^(.*)$ - [F,L]
+  
+  # Bloquear User-Agents maliciosos conocidos
+  RewriteCond %{HTTP_USER_AGENT} ^$ [OR]
+  RewriteCond %{HTTP_USER_AGENT} ^(.*)(libwww-perl|wget|python|nikto|curl|scan|java|winhttp|clshttp|loader) [NC,OR]
+  RewriteCond %{HTTP_USER_AGENT} ^.*(bot|crawl|slurp|spider|scrape|harvest).* [NC]
+  RewriteCond %{HTTP_USER_AGENT} !^.*(googlebot|bingbot|msnbot|yahoo|baidu).* [NC]
+  RewriteRule ^(.*)$ - [F,L]
+  
+  # Bloquear métodos HTTP no estándar
+  RewriteCond %{REQUEST_METHOD} ^(TRACE|DELETE|TRACK|DEBUG) [NC]
+  RewriteRule ^(.*)$ - [F,L]
+</IfModule>
+
+# ----------------------------------------------------------------------------
+# DESHABILITAR ETAGS
+# ----------------------------------------------------------------------------
+<IfModule mod_headers.c>
+  Header unset ETag
+</IfModule>
+FileETag None
+
+# ----------------------------------------------------------------------------
+# LÍMITES DE SEGURIDAD
+# ----------------------------------------------------------------------------
+# Limitar tamaño de peticiones (10MB)
+LimitRequestBody 10485760
+
+# Timeout para conexiones
+<IfModule mod_reqtimeout.c>
+  RequestReadTimeout header=20-40,MinRate=500 body=20,MinRate=500
+</IfModule>
+
+# ----------------------------------------------------------------------------
+# PÁGINAS DE ERROR PERSONALIZADAS (Opcional)
+# ----------------------------------------------------------------------------
+# Descomentar si quieres que Angular maneje todos los errores
+# ErrorDocument 404 /index.html
+# ErrorDocument 403 /index.html
+# ErrorDocument 500 /index.html
+
+# ----------------------------------------------------------------------------
+# OPTIMIZACIONES ADICIONALES
+# ----------------------------------------------------------------------------
+# Deshabilitar el signature del servidor (si tienes acceso)
+# ServerSignature Off
+# ServerTokens Prod
+
+# ----------------------------------------------------------------------------
+# NOTAS IMPORTANTES
+# ----------------------------------------------------------------------------
+# 1. Verifica que mod_headers, mod_rewrite, mod_deflate y mod_expires estén activos
+# 2. Ajusta CSP según los servicios externos que uses
+# 3. Si usas Cloudflare, algunas reglas pueden ser redundantes
+# 4. Prueba después de aplicar: https://securityheaders.com
+# 5. Crea security.txt en /.well-known/security.txt
+# 6. Registra en HSTS Preload: https://hstspreload.org
+# 7. Test SSL: https://www.ssllabs.com/ssltest/
