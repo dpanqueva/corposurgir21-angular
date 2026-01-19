@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -51,10 +51,13 @@ import { AlliancesFormComponent } from './components/alliances/auth/alliances-fo
 import { AlliancesFeaturesTableComponent } from './components/alliances/auth/alliances-features-table/alliances-features-table.component';
 import { AlliancesFeaturesFormComponent } from './components/alliances/auth/alliances-features-form/alliances-features-form.component';
 import { DonationComponent } from './components/donation/principal/donation/donation.component';
-import { DonationTableComponent } from './components/donation/auth/donation-table/donation-table.component';
 import { DonationFormComponent } from './components/donation/auth/donation-form/donation-form.component';
+import { CommonModule } from '@angular/common';
+import { DonationTableComponent } from './components/donation/auth/donation-table/donation-table.component';
+
 
 @NgModule({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
     AppComponent,
     HeaderComponent,
@@ -88,8 +91,8 @@ import { DonationFormComponent } from './components/donation/auth/donation-form/
     AlliancesFeaturesTableComponent,
     AlliancesFeaturesFormComponent,
     DonationComponent,
-    DonationTableComponent,
     DonationFormComponent,
+    DonationTableComponent
   ],
   imports: [
     BrowserModule,
@@ -99,7 +102,10 @@ import { DonationFormComponent } from './components/donation/auth/donation-form/
     NgxSpinnerModule,
     FormsModule,
     NgxPaginationModule,
-    RecaptchaModule
+    RecaptchaModule,
+    CommonModule,
+    RouterModule
+
   ],
   providers: [
     CategoryService,
