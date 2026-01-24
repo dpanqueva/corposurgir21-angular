@@ -20,7 +20,7 @@ export class AlliancesFormComponent implements OnInit {
     private messageService: MessageService,
     private router: Router,
     private activateRoute: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.activateRoute.params.subscribe((params) => {
@@ -34,6 +34,7 @@ export class AlliancesFormComponent implements OnInit {
   }
 
   createAlliance() {
+
     this.allianceService.createAlliance(this.formData('create')).subscribe({
       next: (e) => {
         this.messageService.successFullMessage(environment.mensaje_creado_ok);
@@ -57,19 +58,17 @@ export class AlliancesFormComponent implements OnInit {
     });
   }
 
-  chooseFile(event) {
-    var files = event.target.files;
-    var file = files[0];
-    this.fileChoose = file;
-    if (files && file) {
-      var reader = new FileReader();
-      reader.onload = this._handleReaderLoaded.bind(this);
-      reader.readAsBinaryString(file);
-    }
-  }
+  chooseFile(event: any): void {
+    const files = event.target.files;
+    const file = files[0];
 
-  _handleReaderLoaded(readerEvent) {
-    var binaryStr = readerEvent.target.result;
+    this.fileChoose = file;
+
+    if (files && file) {
+      this.alliance.ruta_imagen = file.name;
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+    }
   }
 
   private formData(operation: string): FormData {
@@ -81,41 +80,42 @@ export class AlliancesFormComponent implements OnInit {
         this.validateDataFormData(this.alliance.alianza_id.toString())
       );
     }
-    if(this.validateDataForm(this.alliance.nombre)){
+    if (this.validateDataForm(this.alliance.nombre)) {
+      this.alliance.nombre = this.replaceBlancFieldNameAllaince(this.alliance.nombre);
       formData.append('nombre', this.validateDataFormData(this.alliance.nombre));
     }
-    if(this.validateDataForm(this.alliance.descripcion)){
+    if (this.validateDataForm(this.alliance.descripcion)) {
       formData.append(
         'descripcion',
         this.validateDataFormData(this.alliance.descripcion)
       );
     }
-    if(this.validateDataForm(this.alliance.ruta_imagen)){
+    if (this.validateDataForm(this.alliance.ruta_imagen)) {
       formData.append(
         'ruta_imagen',
         this.validateDataFormData(this.alliance.ruta_imagen)
       );
     }
-    if(this.validateDataForm(this.fileChoose)){
+    if (this.validateDataForm(this.fileChoose)) {
       formData.append('img_file', this.validateDataFormData(this.fileChoose));
     }
 
     formData.append('snactivo', 'S');
-    if(this.validateDataForm(this.alliance.pagina_web)){
+    if (this.validateDataForm(this.alliance.pagina_web)) {
       formData.append(
         'pagina_web',
         this.validateDataFormData(this.alliance.pagina_web)
       );
     }
 
-    if(this.alliance.direccion){
+    if (this.alliance.direccion) {
       formData.append(
         'direccion',
         this.validateDataFormData(this.alliance.direccion)
       );
     }
 
-    if(this.validateDataForm(this.alliance.barrio)){
+    if (this.validateDataForm(this.alliance.barrio)) {
       formData.append('barrio', this.validateDataFormData(this.alliance.barrio));
     }
 
@@ -156,5 +156,9 @@ export class AlliancesFormComponent implements OnInit {
       return false;
     }
     return true;
+  }
+
+  private replaceBlancFieldNameAllaince(e: string): string {
+    return e.replace(/ /g, '-');
   }
 }
