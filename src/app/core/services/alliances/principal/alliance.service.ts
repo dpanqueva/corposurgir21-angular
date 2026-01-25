@@ -39,15 +39,17 @@ export class AllianceService {
     );
   }
 
-  getAllianceById(allianceId: string): Observable<Alliance> {
-    return this.http
-      .get<Alliance>(this.urlEndPoint.concat('/').concat(allianceId))
-      .pipe(
-        catchError((e) => {
-          return this.messageService.errorMessage(e);
-        })
-      );
-  }
+getAllianceById(allianceId: string): Observable<Alliance> {
+  return this.http
+    .get<Alliance>(this.urlEndPoint.concat('/').concat(allianceId), {
+      headers: this.addAuthorizationHeader()
+    })
+    .pipe(
+      catchError((e) => {
+        return this.messageService.errorMessage(e);
+      })
+    );
+}
 
   getDetail(nombre: string): Observable<Alliance> {
     return this.http

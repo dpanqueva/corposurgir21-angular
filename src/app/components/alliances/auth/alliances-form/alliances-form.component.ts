@@ -47,6 +47,7 @@ export class AlliancesFormComponent implements OnInit {
   }
 
   updateAlliance() {
+    this.alliance.nombre = this.replaceBlancFieldNameAllaince(this.alliance.nombre);
     this.allianceService.updateAlliance(this.alliance).subscribe({
       next: (e) => {
         this.messageService.successFullMessage(environment.mensaje_creado_ok);
@@ -72,7 +73,7 @@ export class AlliancesFormComponent implements OnInit {
   }
 
   private formData(operation: string): FormData {
-    debugger;
+    
     const formData = new FormData();
     if (operation == 'update') {
       formData.append(
@@ -143,7 +144,7 @@ export class AlliancesFormComponent implements OnInit {
   }
 
   private validateDataFormData(e: string) {
-    debugger;
+    
     if (e === undefined || e === null) {
       return null;
     }
@@ -151,7 +152,7 @@ export class AlliancesFormComponent implements OnInit {
   }
 
   private validateDataForm(e: string): boolean {
-    debugger;
+    
     if (e === undefined || e === null) {
       return false;
     }
