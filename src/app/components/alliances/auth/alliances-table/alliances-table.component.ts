@@ -106,7 +106,7 @@ export class AlliancesTableComponent implements OnInit {
   }
 
   private errorBadRequest(e: any) {
-    debugger
+    
     let cont = 0;
     if (e.status == 400) {
       cont = this.buildLstErrors(e.error.error.nombre as string, cont);
@@ -116,7 +116,7 @@ export class AlliancesTableComponent implements OnInit {
   }
 
   private buildLstErrors(e: string, cont:number){
-    debugger
+    
     if(e !== undefined && e !== null){
       this.errors[cont] = e;
       cont++;
