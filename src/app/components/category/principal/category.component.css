@@ -28,12 +28,13 @@
 .programs .icon-box h4 a {
   color: #37517e;
   transition: ease-in-out 0.3s;
+  text-decoration: none;
 }
 
 .programs .icon-box p {
   line-height: 24px;
   font-size: 14px;
-  margin-bottom: 0;
+  margin-bottom: 15px;
 }
 
 .programs .icon-box:hover {
@@ -44,8 +45,42 @@
   color: #47b2e4;
 }
 
-#programs{
-  background-image: url("../../../../assets/img/wave3.svg") ;
+/* CSS para la cinta de "Novedad" */
+.card-ribbon-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.ribbon {
+  position: absolute;
+  top: 20px;
+  right: -35px;
+  transform: rotate(45deg);
+  width: 150px;
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: bold;
+  padding: 5px 10px;
+  z-index: 10;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Botón dentro de la tarjeta */
+.programs .icon-box .btn-outline-warning {
+  border-color: #ffc107;
+  color: #ffc107;
+  transition: all ease-in-out 0.3s;
+}
+
+.programs .icon-box .btn-outline-warning:hover {
+  background-color: #ffc107;
+  border-color: #ffc107;
+  color: #212529;
+}
+
+#programs {
+  background-image: url("../../../../assets/img/wave3.svg");
   background-repeat: no-repeat;
 }
 
+/**--------------------------------------------------------------*/

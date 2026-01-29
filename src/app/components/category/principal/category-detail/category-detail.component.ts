@@ -11,6 +11,7 @@ import { CategoryService } from 'src/app/core/services/category/principal/catego
 export class CategoryDetailComponent implements OnInit {
 
   categories: Category;
+  today: Date = new Date();
 
   constructor(private router: Router, private activateRoute: ActivatedRoute
     ,private categoryClient: CategoryService) { }

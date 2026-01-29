@@ -21,3 +21,23 @@
 .title-category, .inf-descrption{
     color:#ffffff;
 }
+
+/* CSS para la cinta de "Novedad" */
+.card-ribbon-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.ribbon {
+  position: absolute;
+  top: 20px;
+  right: -35px;
+  transform: rotate(45deg);
+  width: 150px;
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: bold;
+  padding: 5px 10px;
+  z-index: 10;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}

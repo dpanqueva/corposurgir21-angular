@@ -1,22 +1,26 @@
 <div class="container" *ngIf="categories" id="section-category">
-    <div class="content">
-      <div class="p-5 rounded mt-3 bg-gray">
-        <h1 class="title-category">{{categories.nombre | uppercase}}</h1>
-        <p class="lead inf-descrption">{{categories.descripcion}}.</p>
-      </div>
+  <div class="content">
+    <div class="p-5 rounded mt-3 bg-gray">
+      <h1 class="title-category">{{categories.nombre | uppercase}}</h1>
+      <p class="lead inf-descrption">{{categories.descripcion}}.</p>
     </div>
-    <div class="row gx-lg-5">
-      <div class="text-center">
-        <h3>Características</h3>
-      </div>
-      <div class="col-lg-6 col-xxl-4 mb-5" *ngFor="let caracteristica of categories.caracteristicas">
-        <div class="card bg-light border-0 h-100" >
-            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                <div class="feature bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="{{categories.logo}}"></i></div>
-                <h2 class="fs-4 fw-bold">{{caracteristica.nombre_caracteristica}}</h2>
-                <p class="mb-0">{{caracteristica.descripcion}}</p>
-            </div>
+  </div>
+  <div class="row gx-lg-5">
+    <div class="text-center">
+      <h3>Características</h3>
+    </div>
+    <div class="col-lg-6 col-xxl-4 mb-5" *ngFor="let caracteristica of categories.caracteristicas">
+      
+      <div class="card bg-light border-0 h-100 card-ribbon-wrapper">
+        <div class="ribbon bg-info text-dark text-uppercase" *ngIf="caracteristica.bln_cinta_noticia && (caracteristica.fe_fin_cinta | date) >= (today | date)">
+          ¡Nueva Información!
+        </div>
+        <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+          <div class="feature bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="{{categories.logo}}"></i></div>
+          <h2 class="fs-4 fw-bold">{{caracteristica.nombre_caracteristica}}</h2>
+          <p class="mb-0">{{caracteristica.descripcion}}</p>
         </div>
       </div>
     </div>
   </div>
+</div>

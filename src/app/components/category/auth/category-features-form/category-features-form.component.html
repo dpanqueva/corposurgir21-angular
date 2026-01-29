@@ -57,6 +57,25 @@
           Por favor ingrese el código de la categoría.
         </div>
       </div>
+      <div class="mb-3">
+        <label for="fe_fin_cinta" class="form-label">Fecha fin cinta</label>
+        <input type="datetime-local" class="form-control" id="fe_fin_cinta" name="fe_fin_cinta" required
+          aria-describedby="categoryCodeFeedback" [value]="featuresCategory.fe_fin_cinta | date:'yyyy-MM-ddTHH:mm'"
+          (change)="featuresCategory.fe_fin_cinta = $any($event.target).value" />
+        <div class="invalid-feedback">
+          Por favor ingrese la fecha de finalización de la cinta.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="bln_cinta_noticia" class="form-label">Cinta noticia</label>
+        <select class="form-select" id="bln_cinta_noticia" required aria-label="select example" name="bln_cinta_noticia"
+          [(ngModel)]="featuresCategory.bln_cinta_noticia">
+          <option value="">Elija su opción</option>
+          <option value="1">Si</option>
+          <option value="0">No</option>
+        </select>
+        <div class="invalid-feedback">Por favor elija su opción</div>
+      </div>
       <div class="mb-3" *ngIf="formCategoryFeatures.form.valid">
         <button
           class="btn btn-primary"

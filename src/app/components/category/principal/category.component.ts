@@ -11,6 +11,7 @@ import { CategoryService } from 'src/app/core/services/category/principal/catego
 export class CategoryComponent implements OnInit {
 
   categories: Category[];
+  today: Date = new Date();
 
   constructor(private categoryClient: CategoryService) {
   }
