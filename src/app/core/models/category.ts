@@ -10,6 +10,10 @@ export class Category {
   logo: string;
 
   descripcion:string;
+
+  bln_cinta_noticia: boolean;
+
+  fe_fin_cinta: Date
   
   caracteristicas: Array<CategoryFeature> = [];
 }

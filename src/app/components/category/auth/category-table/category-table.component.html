@@ -13,6 +13,8 @@
           <th scope="col">#</th>
           <th scope="col">Nombre</th>
           <th scope="col">Código</th>
+          <th scope="col">Info. Nueva</th>
+          <th scope="col">Fecha de finalización</th>
           <th scope="col">Caracteristica</th>
           <th scope="col">Editar</th>
           <th scope="col">Eliminar</th>
@@ -28,6 +30,8 @@
           <th scope="row">{{ category.categoria_id }}</th>
           <td>{{ category.nombre }}</td>
           <td>{{ category.codigo }}</td>
+          <td>{{ category.bln_cinta_noticia ? 'Sí' : 'No' }}</td>
+          <td>{{ category.fe_fin_cinta | date }}</td>
           <td>
             <button
               class="btn bg-gray text-white"

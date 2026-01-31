@@ -4,10 +4,14 @@
     <hr class="text-white">
     <div class="row">
       <div class="col-xl-3 col-md-6 d-flex align-items-stretch p-3" data-aos="zoom-in" data-aos-delay="100" *ngFor="let category of categories">
-        <div class="icon-box">
+        <div class="icon-box card-ribbon-wrapper">
+          <div class="ribbon bg-info text-dark text-uppercase" *ngIf="category.bln_cinta_noticia && (category.fe_fin_cinta | date) >= (today | date)">
+            ¡Nueva Información!
+          </div>
           <div class="icon"><i class="{{category.logo}}"></i></div>
           <h4><a [routerLink]="['categoria',category.codigo]">{{category.nombre}}</a></h4>
           <p class="text-justify">{{category.descripcion}}</p>
+          <a [routerLink]="['categoria',category.codigo]" class="btn btn-sm btn-outline-info mt-2 stretched-link">Ver detalles</a>
         </div>
       </div>
     </div>
