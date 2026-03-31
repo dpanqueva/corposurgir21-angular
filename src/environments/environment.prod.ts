@@ -1,7 +1,6 @@
 export const environment = {
   production: true,
-  //base_url: 'https://corposurgir21-api.corposurgir21.org/public/',
-  base_url: 'http://localhost:8100/',
+  base_url: 'https://corposurgir21-api.corposurgir21.org/public/',
   mensaje_error: 'No se ha podido acceder a la información solicitada.',
   contacto_registrado_ok: 'Gracias por escribirnos, un asesor se contactará con usted.',
   mensaje_creado_ok: 'Recurso creado con éxito.',
@@ -10,5 +9,6 @@ export const environment = {
   mensaje_no_encontrado: 'Recurso que desea buscar no existe.',
   mensaje_internal_error: 'Ups! Hemos presentado un error, por favor intente más tarde.',
   mensaje_eliminado_error: 'El recurso no se ha eliminado, por favor intente más tarde.',
-  siteKeyReCaptcha: '6LdnSaAsAAAAAM-Y5_9FABeGwLE62WlZc2EtYqjv'
+  siteKeyReCaptcha: '6LdnSaAsAAAAAM-Y5_9FABeGwLE62WlZc2EtYqjv',
+  siteKeyBackApi: '6LdnSaAsAAAAAIiZ2hAS3-X_xkVp8yTu8fqXTRzg'
 };
