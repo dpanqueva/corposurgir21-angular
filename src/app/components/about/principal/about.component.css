@@ -1,26 +1,208 @@
-  /*-----------------------------
-  # About css
-  -------------------------------*/
-  .bg-green-corporate{
-    background-color: #135a5f!important;
-    color: #ffffff;
-  }
-
-  #about{
-    padding-top: 5px;
-  }
-
-  .feature {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    height: 4rem;
-    width: 4rem;
-    font-size: 2rem;
-    background-color: #58812c !important;
+#about {
+  background-color: var(--cs-bg);
 }
 
-.text-justify{
-    text-align: justify;
+.cs-about__hero {
+  background-color: var(--cs-bg-soft);
 }
 
+.cs-about__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+  font-weight: 500;
+  color: var(--cs-text-mid);
+  line-height: 1.25;
+  margin: 0;
+  max-width: 720px;
+}
+
+.cs-about__body {
+  background-color: var(--cs-white);
+}
+
+.cs-about__lead {
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  font-weight: 400;
+  color: var(--cs-text);
+  line-height: 1.85;
+  margin-bottom: 0;
+}
+
+.cs-about__divider {
+  width: 3rem;
+  height: 2px;
+  background-color: var(--cs-secondary);
+  margin-top: 2rem;
+}
+
+.cs-about__secondary {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: var(--cs-muted);
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+}
+
+.cs-about__stats {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.cs-about__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.cs-about__stat i {
+  font-size: 1.5rem;
+  color: var(--cs-accent);
+}
+
+.cs-about__stat-number {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--cs-text-mid);
+}
+
+.cs-about__pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--cs-line);
+  margin-top: 4rem;
+}
+
+.cs-about__pillar {
+  padding: 2.5rem 2rem 2.5rem 0;
+  border-right: 1px solid var(--cs-line);
+}
+
+.cs-about__pillar:first-child {
+  padding-left: 0;
+}
+
+.cs-about__pillar:last-child {
+  border-right: none;
+  padding-right: 0;
+}
+
+.cs-about__pillar:not(:first-child) {
+  padding-left: 2rem;
+}
+
+.cs-about__pillar-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: 1.25rem;
+}
+
+.cs-about__pillar-icon i {
+  font-size: 1.75rem;
+  color: var(--cs-accent);
+  transition: color 0.2s ease;
+}
+
+.cs-about__pillar:hover .cs-about__pillar-icon i {
+  color: var(--cs-primary);
+}
+
+.cs-about__pillar-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--cs-text-mid);
+  margin-bottom: 0.75rem;
+}
+
+.cs-about__pillar-desc {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: var(--cs-muted);
+  line-height: 1.8;
+  margin-bottom: 0;
+}
+
+@media (max-width: 991px) {
+  .cs-about__pillars {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    margin-top: 3rem;
+  }
+
+  .cs-about__pillar {
+    padding: 2rem 1.5rem 2rem 0;
+    border-right: 1px solid var(--cs-line);
+    border-bottom: 1px solid var(--cs-line);
+  }
+
+  .cs-about__pillar:nth-child(2n) {
+    border-right: none;
+    padding-right: 0;
+  }
+
+  .cs-about__pillar:nth-child(2n + 1) {
+    padding-left: 0;
+  }
+
+  .cs-about__pillar:nth-child(n + 3) {
+    border-bottom: none;
+  }
+
+  .cs-about__pillar:not(:first-child):not(:nth-child(2n + 1)) {
+    padding-left: 1.5rem;
+  }
+
+  .cs-about__pillar:nth-child(2n + 1):not(:first-child) {
+    padding-left: 1.5rem;
+  }
+
+  .cs-about__pillar:first-child {
+    padding-left: 0;
+  }
+
+  .cs-about__pillar:nth-child(n + 3) {
+    border-bottom: 1px solid var(--cs-line);
+  }
+
+  .cs-about__pillar:last-child {
+    border-bottom: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .cs-about__pillars {
+    grid-template-columns: 1fr;
+    margin-top: 2.5rem;
+  }
+
+  .cs-about__pillar {
+    padding: 1.75rem 0;
+    border-right: none;
+    border-bottom: 1px solid var(--cs-line);
+  }
+
+  .cs-about__pillar:not(:first-child) {
+    padding-left: 0;
+  }
+
+  .cs-about__pillar:last-child {
+    border-bottom: none;
+  }
+
+  .cs-about__lead {
+    font-size: 1.0625rem;
+  }
+
+  .cs-about__stats {
+    gap: 1.5rem;
+  }
+}

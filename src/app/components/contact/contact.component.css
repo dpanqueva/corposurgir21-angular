@@ -1,18 +1,225 @@
-#contact-admin-form {
-  margin-top: 80px;
-  height: auto;
-  padding: 10px;
+.cs-contact {
+  background-color: var(--cs-bg);
 }
 
-.bg-azul{
-  background-color: #2297a5;
-  color: #ffffff;
+.cs-contact__hero {
+  background-color: var(--cs-bg-soft);
+}
+
+.cs-contact__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 500;
+  color: var(--cs-text-mid);
+  margin: 0;
+}
+
+.cs-contact__body {
+  padding-top: var(--section-py);
+  padding-bottom: var(--section-py);
+}
+
+.cs-contact__info {
+  position: sticky;
+  top: 5rem;
+}
+
+.cs-contact__info-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--cs-text-mid);
+  margin-bottom: 2rem;
+}
+
+.cs-contact__info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--cs-line);
+}
+
+.cs-contact__info-item:first-of-type {
+  border-top: 1px solid var(--cs-line);
+}
+
+.cs-contact__info-icon {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--cs-accent);
+  flex-shrink: 0;
+  padding-top: 0.125rem;
+}
+
+.cs-contact__info-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.cs-contact__info-label {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--cs-muted);
+}
+
+.cs-contact__info-value {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: var(--cs-text);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a.cs-contact__info-value:hover {
+  color: var(--cs-primary);
+}
+
+.cs-contact__trust {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--cs-muted);
+  margin-top: 2rem;
+  padding: 1rem;
+  border-left: 3px solid var(--cs-accent);
+  background-color: var(--cs-bg-soft);
+}
+
+.cs-contact__form-card {
+  background-color: var(--cs-white);
+  border: 1px solid var(--cs-line);
+  padding: 2.5rem;
+}
+
+.cs-contact__alert {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  padding: 0.875rem 1rem;
+  margin-bottom: 1.5rem;
+  list-style: none;
+}
+
+.cs-contact__alert--danger {
+  background-color: var(--cs-bg);
+  border: 1px solid var(--cs-line);
+  border-left: 3px solid var(--cs-primary);
+  color: var(--cs-text);
+  padding-left: 0;
+}
+
+.cs-contact__alert--danger li {
+  padding: 0.25rem 0;
+}
+
+.cs-contact__alert--warning {
+  background-color: rgba(88, 129, 44, 0.08);
+  border: 1px solid var(--cs-line);
+  border-left: 3px solid var(--cs-secondary);
+  color: var(--cs-text);
+  margin-top: 0.5rem;
+}
+
+.cs-contact__alert--warning div {
+  padding: 0.25rem 0;
+}
+
+.cs-contact__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.cs-contact__field {
+  display: flex;
+  flex-direction: column;
+}
+
+.cs-contact__label {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--cs-muted);
+  margin-bottom: 0.5rem;
+}
+
+.cs-contact__input,
+.cs-contact__textarea,
+.cs-contact__select {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: var(--cs-text);
+  background-color: var(--cs-white);
+  border: 1px solid var(--cs-line);
+  padding: 0.625rem 0.875rem;
+  width: 100%;
+  transition: border-color 0.2s ease;
+  outline: none;
+  border-radius: 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.cs-contact__input:focus,
+.cs-contact__textarea:focus,
+.cs-contact__select:focus {
+  border-color: var(--cs-primary);
+}
+
+.cs-contact__textarea {
+  min-height: 140px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.cs-contact__select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236B6B6B' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.875rem center;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+
+.cs-contact__recaptcha {
+  margin-top: 0.5rem;
 }
 
 @media (max-width: 991px) {
-  #contact-admin-form {
-      margin-top: 80px;
-      height: auto;
-      text-align: center;
+  .cs-contact__info {
+    position: static;
+    margin-bottom: 2.5rem;
+  }
+
+  .cs-contact__form-card {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .cs-contact__form-card {
+    padding: 1.5rem;
+  }
+
+  .cs-contact__label {
+    font-size: 0.7rem;
+  }
+
+  .cs-contact__input,
+  .cs-contact__textarea,
+  .cs-contact__select {
+    font-size: 0.875rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .cs-contact__textarea {
+    min-height: 120px;
   }
 }

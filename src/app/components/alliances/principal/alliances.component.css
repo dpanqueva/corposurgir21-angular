@@ -1,25 +1,133 @@
-  /*-----------------------------
-  # Allaince css
-  -------------------------------*/
-  .alliance {
-    padding: 12px 0;
-    text-align: center;
-  }
-  
-  .img {
-    max-width: 45%;
-    width: 120px;
-    transition: all 0.4s ease-in-out;
-    display: inline-block;
-    padding: 15px 0;
-    filter: grayscale(100);
-  }
-  
-  .img:hover {
-    filter: none;
-    transform: scale(1.1);
+#alliance {
+  background-color: var(--cs-bg);
+}
+
+.cs-alliances__hero {
+  background-color: var(--cs-bg-soft);
+}
+
+.cs-alliances__header {
+  text-align: center;
+}
+
+.cs-alliances__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 500;
+  color: var(--cs-text-mid);
+  margin: 0 0 1rem;
+}
+
+.cs-alliances__intro {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--cs-muted);
+  line-height: 1.8;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.cs-alliances__empty {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--cs-muted);
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.cs-alliances__body {
+  padding-top: var(--section-py);
+  padding-bottom: var(--section-py);
+}
+
+.cs-alliance-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+  border: 1px solid var(--cs-line);
+  background-color: var(--cs-white);
+  text-decoration: none;
+  transition: border-color 0.25s ease;
+  min-height: 200px;
+  cursor: pointer;
+}
+
+.cs-alliance-card:hover,
+.cs-alliance-card:focus {
+  border-color: var(--cs-primary);
+  outline: none;
+}
+
+.cs-alliance-card__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  margin-bottom: 1rem;
+}
+
+.cs-alliance-card__logo img {
+  max-height: 52px;
+  max-width: 100px;
+  width: auto;
+  filter: grayscale(100%);
+  opacity: 0.7;
+  transition: filter 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+}
+
+.cs-alliance-card:hover .cs-alliance-card__logo img,
+.cs-alliance-card:focus .cs-alliance-card__logo img {
+  filter: grayscale(0%);
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.cs-alliance-card__name {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--cs-muted);
+  text-align: center;
+  line-height: 1.4;
+  transition: color 0.2s ease;
+}
+
+.cs-alliance-card:hover .cs-alliance-card__name,
+.cs-alliance-card:focus .cs-alliance-card__name {
+  color: var(--cs-text-mid);
+}
+
+@media (max-width: 991px) {
+  .cs-alliance-card {
+    min-height: 160px;
+    padding: 1.5rem 1rem;
   }
 
-  .bg-light-gray{
-    background-color: #f3f5fa;  
+  .cs-alliance-card__logo img {
+    max-width: 80px;
   }
+}
+
+@media (max-width: 575px) {
+  .cs-alliance-card {
+    min-height: 140px;
+    padding: 1.25rem 0.75rem;
+  }
+
+  .cs-alliance-card__logo {
+    height: 44px;
+  }
+
+  .cs-alliance-card__logo img {
+    max-width: 70px;
+    max-height: 44px;
+  }
+
+  .cs-alliance-card__name {
+    font-size: 0.8rem;
+  }
+}

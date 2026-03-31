@@ -1,20 +1,38 @@
-<section id="programs" class="programs">
-  <div class="container">
-    <h3 class="text-center text-white">-Programas-</h3>
-    <hr class="text-white">
-    <div class="row">
-      <div class="col-xl-3 col-md-6 d-flex align-items-stretch p-3" data-aos="zoom-in" data-aos-delay="100" *ngFor="let category of categories">
-        <div class="icon-box card-ribbon-wrapper">
-          <div class="ribbon bg-info text-dark text-uppercase" *ngIf="category.bln_cinta_noticia && (category.fe_fin_cinta | date) >= (today | date)">
-            ¡Nueva Información!
-          </div>
-          <div class="icon"><i class="{{category.logo}}"></i></div>
-          <h4><a [routerLink]="['categoria',category.codigo]">{{category.nombre}}</a></h4>
-          <p class="text-justify">{{category.descripcion}}</p>
-          <a [routerLink]="['categoria',category.codigo]" class="btn btn-sm btn-outline-info mt-2 stretched-link">Ver detalles</a>
-        </div>
-      </div>
+<section id="programs">
+  <div class="cs-programs__hero cs-section-hero">
+    <div class="container">
+      <span class="section-label">Líneas de acción</span>
+      <h1 class="cs-programs__title">Programas</h1>
+    </div>
+  </div>
+
+  <div class="cs-programs__body cs-section-body">
+    <div class="container">
+      <ol class="cs-programs__list">
+        <li
+          class="cs-programs__item"
+          *ngFor="let category of categories; let i = index">
+          <a class="cs-programs__link" [routerLink]="['categoria', category.codigo]">
+            <span class="cs-programs__index">{{ (i + 1) | number:'2.0-0' }}</span>
+            <div class="cs-programs__content">
+              <div class="cs-programs__header">
+                <h2 class="cs-programs__name">{{category.nombre}}</h2>
+                <span
+                  class="cs-badge--new"
+                  *ngIf="category.bln_cinta_noticia && (category.fe_fin_cinta | date) >= (today | date)"
+                  aria-label="Nueva información disponible">
+                  Nueva información
+                </span>
+              </div>
+              <p class="cs-programs__desc">{{category.descripcion}}</p>
+            </div>
+            <div class="cs-programs__icon">
+              <i class="{{category.logo}}" aria-hidden="true"></i>
+            </div>
+            <span class="cs-programs__arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+      </ol>
     </div>
   </div>
 </section>
-<!-- End Programs section-->

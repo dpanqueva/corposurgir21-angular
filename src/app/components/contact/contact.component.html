@@ -1,90 +1,115 @@
-<section id="contact-admin-form" class="contact-admin-form">
-  <div class="container">
-    <h2 class="text-center">Formulario contactanos</h2>
-    <ul class="alert alert-danger" *ngIf="errors?.length > 0">
-      <li *ngFor="let error of errors">
-        {{ error }}
-      </li>
-    </ul>
-    <form class="was-validated" #formContact="ngForm">
-      <div class="mb-3">
-        <label for="tipoContactoActive" class="form-label">Tipo contacto</label>
-        <select
-          class="form-select"
-          id="tipoContactoActive"
-          required
-          aria-label="select example"
-          name="tipo_contacto"
-          [(ngModel)]="contact.tipo_contacto"
-        >
-          <option value="">Elija su opción</option>
-          <option value="PQRS">PQRS</option>
-          <option value="AFILIACIONES">Afiliación</option>
-        </select>
-        <div class="invalid-feedback">Por favor elija su opción</div>
-      </div>
-      <div class="mb-3">
-        <label for="emailContact" class="form-label">Correo</label>
-        <input
-          type="email"
-          id="formEmail"
-          class="form-control form-control-lg"
-          [(ngModel)]="contact.correo"
-          name="correo"
-          email
-          placeholder="Ingrese su correo"
-          minlength="4"
-          required
-          #correo="ngModel"
-        />
-        <div
-          class="alert alert-warning"
-          *ngIf="correo.invalid && (correo.dirty || correo.touched)"
-        >
-          <div *ngIf="correo.errors.required">El campo Correo es requerido</div>
-          <div *ngIf="correo.errors.minlength">
-            El campo Correo debe tener al menos 8 caracteres
-          </div>
-          <div *ngIf="correo.errors.email">
-            El campo Correo debe tener un formato valido
+<section id="contact" class="cs-contact">
+  <div class="cs-contact__hero cs-section-hero">
+    <div class="container">
+      <span class="section-label">Contacto</span>
+      <h1 class="cs-contact__title">Estamos para ayudarte</h1>
+    </div>
+  </div>
+
+  <div class="cs-contact__body cs-section-body">
+    <div class="container">
+      <div class="row gx-lg-5">
+        <div class="col-lg-4">
+          <div class="cs-contact__info">
+            <h2 class="cs-contact__info-title">Información de contacto</h2>
+
+            <div class="cs-contact__info-item">
+              <i class="bi bi-envelope cs-contact__info-icon" aria-hidden="true"></i>
+              <div class="cs-contact__info-content">
+                <span class="cs-contact__info-label">Correo electrónico</span>
+                <a class="cs-contact__info-value" href="mailto:contacto@corposurgir21.org">contacto@corposurgir21.org</a>
+              </div>
+            </div>
+
+            <div class="cs-contact__info-item">
+              <i class="bi bi-geo-alt cs-contact__info-icon" aria-hidden="true"></i>
+              <div class="cs-contact__info-content">
+                <span class="cs-contact__info-label">Ubicación</span>
+                <span class="cs-contact__info-value">Colombia</span>
+              </div>
+            </div>
+
+            <p class="cs-contact__trust">
+              Respondemos en 48 horas hábiles
+            </p>
           </div>
         </div>
-      </div>
-      <div class="mb-3">
-        <label for="contactNumber" class="form-label">Número de contacto</label>
-        <input
-          type="number"
-          class="form-control"
-          id="contactNumber"
-          placeholder="3215649877"
-          required
-          [(ngModel)]="contact.numero_contacto"
-          name="numero_contacto"
-        />
-        <div class="invalid-feedback">
-          Por favor ingrese el número de contacto.
+
+        <div class="col-lg-7 offset-lg-1">
+          <div class="cs-contact__form-card">
+            <ul class="cs-contact__alert cs-contact__alert--danger" *ngIf="errors?.length > 0">
+              <li *ngFor="let error of errors">{{ error }}</li>
+            </ul>
+
+            <form class="cs-contact__form" #formContact="ngForm">
+              <div class="cs-contact__field">
+                <label for="tipoContactoActive" class="cs-contact__label">Tipo de contacto</label>
+                <select
+                  class="cs-contact__select"
+                  id="tipoContactoActive"
+                  aria-label="Seleccionar tipo de contacto"
+                  name="tipo_contacto"
+                  [(ngModel)]="contact.tipo_contacto"
+                  required>
+                  <option value="">Elija su opción</option>
+                  <option value="PQRS">PQRS</option>
+                  <option value="AFILIACIONES">Afiliación</option>
+                </select>
+              </div>
+
+              <div class="cs-contact__field">
+                <label for="formEmail" class="cs-contact__label">Correo electrónico</label>
+                <input
+                  type="email"
+                  id="formEmail"
+                  class="cs-contact__input"
+                  [(ngModel)]="contact.correo"
+                  name="correo"
+                  email
+                  placeholder="Ingrese su correo"
+                  minlength="4"
+                  required
+                  #correo="ngModel">
+                <div class="cs-contact__alert cs-contact__alert--warning" *ngIf="correo.invalid && (correo.dirty || correo.touched)">
+                  <div *ngIf="correo.errors?.required">El campo Correo es requerido</div>
+                  <div *ngIf="correo.errors?.minlength">El campo Correo debe tener al menos 8 caracteres</div>
+                  <div *ngIf="correo.errors?.email">El campo Correo debe tener un formato válido</div>
+                </div>
+              </div>
+
+              <div class="cs-contact__field">
+                <label for="contactNumber" class="cs-contact__label">Número de contacto</label>
+                <input
+                  type="number"
+                  id="contactNumber"
+                  class="cs-contact__input"
+                  placeholder="3215649877"
+                  required
+                  [(ngModel)]="contact.numero_contacto"
+                  name="numero_contacto">
+              </div>
+
+              <div class="cs-contact__field">
+                <label for="contactDescription" class="cs-contact__label">Mensaje</label>
+                <textarea
+                  id="contactDescription"
+                  class="cs-contact__textarea"
+                  placeholder="Describa su consulta o solicitud"
+                  required
+                  [(ngModel)]="contact.mensaje"
+                  name="descripcion"></textarea>
+              </div>
+
+              <div class="cs-contact__recaptcha" *ngIf="formContact.form.valid">
+                <re-captcha
+                  (resolved)="resolved($event)"
+                  siteKey="{{ siteKey }}">
+                </re-captcha>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-      <div class="mb-3">
-        <label for="contactDescription" class="form-label">Mensaje</label>
-        <textarea
-          class="form-control"
-          id="contactDescription"
-          placeholder="Descripción del programa"
-          required
-          [(ngModel)]="contact.mensaje"
-          name="descripcion"
-        ></textarea>
-        <div class="invalid-feedback">
-          Por favor ingrese la descripción de la categoría.
-        </div>
-      </div>
-      <div class="mb-3" *ngIf="formContact.form.valid">
-        <re-captcha
-          (resolved)="resolved($event)"
-          siteKey="{{ siteKey }}"
-        ></re-captcha>
-      </div>
-    </form>
+    </div>
   </div>
 </section>

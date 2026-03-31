@@ -1,21 +1,241 @@
-/*-----------------------------
-# Header section css
--------------------------------*/
-#header{
-  display: grid;
-}
-#header .navbar-toggler{
-  background-color: #FDFEFE !important;
-}
-/*------------------------------
-# Navbar section css
---------------------------------*/
-.bg-blue-dark-corporative{
-  background-color: #135a5f !important;
-  color: #ffffff;
+#header {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
 }
 
-.bg-azul{
-  background-color: #2297a5;
-  color: #ffffff;
+.cs-navbar {
+  background-color: var(--cs-white);
+  border-bottom: 1px solid var(--cs-line);
+  width: 100%;
+}
+
+.cs-navbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  height: 64px;
+}
+
+.cs-navbar__brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.cs-navbar__logo {
+  max-width: 160px;
+  height: auto;
+}
+
+.cs-navbar__toggler {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--cs-line);
+  padding: 0.375rem 0.5rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.cs-navbar__toggler:hover {
+  border-color: var(--cs-primary);
+}
+
+.cs-navbar__toggler i {
+  font-size: 1.5rem;
+  color: var(--cs-text);
+}
+
+.cs-navbar__collapse {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cs-navbar__menu {
+  display: flex;
+  align-items: center;
+  gap: 0.125rem;
+}
+
+.cs-navbar__link {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--cs-text);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  transition: color 0.2s ease;
+  border-bottom: 2px solid transparent;
+}
+
+.cs-navbar__link:hover {
+  color: var(--cs-primary);
+}
+
+.cs-navbar__link.active {
+  color: var(--cs-primary);
+  border-bottom-color: var(--cs-primary);
+}
+
+.cs-navbar__link--cta {
+  background-color: var(--cs-primary);
+  color: var(--cs-white);
+  margin-left: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+
+.cs-navbar__link--cta:hover {
+  background-color: var(--cs-primary-dark);
+  color: var(--cs-white);
+}
+
+.cs-navbar__link--cta.active {
+  background-color: var(--cs-primary-dark);
+  border-bottom-color: transparent;
+}
+
+.cs-navbar__menu--admin {
+  gap: 0;
+}
+
+.cs-navbar__dropdown {
+  position: relative;
+}
+
+.cs-navbar__dropdown-toggle {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--cs-white);
+  background-color: var(--cs-accent);
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.cs-navbar__dropdown-toggle:hover {
+  background-color: var(--cs-primary);
+}
+
+.cs-navbar__dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background-color: var(--cs-white);
+  border: 1px solid var(--cs-line);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  min-width: 120px;
+  z-index: 1050;
+}
+
+.cs-navbar__dropdown-item {
+  display: block;
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--cs-text);
+  background: transparent;
+  border: none;
+  padding: 0.625rem 1rem;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.cs-navbar__dropdown-item:hover {
+  background-color: var(--cs-bg-soft);
+  color: var(--cs-primary);
+}
+
+@media (max-width: 991px) {
+  .cs-navbar__inner {
+    padding: 0 1rem;
+    height: 56px;
+  }
+
+  .cs-navbar__logo {
+    max-width: 140px;
+  }
+
+  .cs-navbar__toggler {
+    display: block;
+  }
+
+  .cs-navbar__collapse {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--cs-white);
+    border-bottom: 1px solid var(--cs-line);
+    justify-content: flex-start;
+  }
+
+  .cs-navbar__collapse:not(.show) {
+    display: none;
+  }
+
+  .cs-navbar__collapse.show {
+    display: flex;
+  }
+
+  .cs-navbar__menu {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    padding: 0.5rem 0;
+  }
+
+  .cs-navbar__link {
+    padding: 0.875rem 1.5rem;
+    border-bottom: none;
+  }
+
+  .cs-navbar__link:hover,
+  .cs-navbar__link.active {
+    background-color: var(--cs-bg-soft);
+    color: var(--cs-primary);
+    border-bottom-color: transparent;
+  }
+
+  .cs-navbar__link--cta {
+    margin: 0.5rem 1.5rem;
+    text-align: center;
+  }
+
+  .cs-navbar__menu--admin {
+    padding-bottom: 0.5rem;
+  }
+
+  .cs-navbar__dropdown {
+    width: 100%;
+  }
+
+  .cs-navbar__dropdown-toggle {
+    width: 100%;
+    text-align: left;
+  }
+
+  .cs-navbar__dropdown-menu {
+    position: static;
+    border: none;
+    border-top: 1px solid var(--cs-line);
+    background-color: var(--cs-bg-soft);
+  }
+
+  .cs-navbar__dropdown-item {
+    padding: 0.625rem 1.5rem 0.625rem 2rem;
+  }
+
+  .cs-navbar__dropdown-item:hover {
+    background-color: var(--cs-line);
+    color: var(--cs-primary);
+  }
 }

@@ -1,58 +1,72 @@
-<!-- Footer section section-->
-<footer id="footer"*ngIf="infoCompany">
-  <div class="footer-top">
+<footer id="footer" *ngIf="infoCompany">
+  <div class="cs-footer__top">
     <div class="container">
-      <div class="row">
-
-        <div class="col-lg-3 col-md-6 footer-contact">
-          <h3>{{infoCompany.nombre_empresa}}</h3>
-          <p>
-            {{infoCompany.direccion}} <br>
-            {{infoCompany.ciudad_pais}}<br>
-            <br>
-            <strong>Número de fijo:</strong> {{infoCompany.numero_fijo}}<br>
-            <strong>Número de celular:</strong> {{infoCompany.numero_celular}}<br>
-            <strong>Correo:</strong>{{infoCompany.correo}}<br>
-          </p>
-        </div>
-
-        <div class="col-lg-3 col-md-6 footer-links">
-          <h4>Links de uso</h4>
-          <ul>
-            <li><i class="bx bx-chevron-right"></i> <a href="#header">Principal</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#alliance">Alianzas</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#about">Quiénes somos</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#programs">Programas</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-3 col-md-6 footer-links">
-          <h4>Otros links</h4>
-          <ul>
-            <li><i class="bx bx-chevron-right"></i> <a [routerLink]="['/informacion-donaciones']">Donaciones</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a [routerLink]="['/contactanos']">PQRS - Afiliaciones</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-3 col-md-6 footer-links">
-          <h4>Nuestras redes sociales</h4>
-          <p>@corposurgir21</p>
-          <div class="social-links mt-3">
-            <span class="social-links-attr" *ngFor="let social of infoCompany.caracteristicas"> <a href="{{social.url_red_social}}" class="{{social.nombre}}" target="_blank"><i class="{{social.logo}}"></i></a></span>
+      <div class="row gx-lg-5">
+        <div class="col-lg-4">
+          <div class="cs-footer__brand">
+            <img 
+              src="./assets/img/corposurgirLogo.png" 
+              alt="{{infoCompany.nombre_empresa}}" 
+              class="cs-footer__logo-img"
+              style="filter: brightness(0) invert(1);">
+            <p class="cs-footer__mission">Organización sin ánimo de lucro dedicada al desarrollo social y territorial en Colombia.</p>
           </div>
         </div>
 
+        <div class="col-lg-3">
+          <div class="cs-footer__nav">
+            <span class="cs-footer__nav-title">Navegación</span>
+            <nav class="cs-footer__nav-list">
+              <a class="cs-footer__nav-link" href="#hero">Inicio</a>
+              <a class="cs-footer__nav-link" href="#about">Quiénes somos</a>
+              <a class="cs-footer__nav-link" href="#programs">Líneas de acción</a>
+              <a class="cs-footer__nav-link" href="#alliance">Alianzas</a>
+              <a class="cs-footer__nav-link" href="/informacion-donaciones">Donaciones</a>
+              <a class="cs-footer__nav-link" href="/contactanos">Contacto</a>
+            </nav>
+          </div>
+        </div>
+
+        <div class="col-lg-4 offset-lg-1">
+          <div class="cs-footer__contact">
+            <span class="cs-footer__contact-title">Contacto institucional</span>
+            <div class="cs-footer__contact-list">
+              <div class="cs-footer__contact-item">
+                <span class="cs-footer__contact-label">Dirección</span>
+                <span class="cs-footer__contact-value">{{infoCompany.direccion}}, {{infoCompany.ciudad_pais}}</span>
+              </div>
+              <div class="cs-footer__contact-item">
+                <span class="cs-footer__contact-label">Correo</span>
+                <a class="cs-footer__contact-link" href="mailto:{{infoCompany.correo}}">{{infoCompany.correo}}</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="cs-footer__social" *ngIf="infoCompany.caracteristicas && infoCompany.caracteristicas.length > 0">
+            <span class="cs-footer__social-label">Síguenos</span>
+            <div class="cs-footer__social-links">
+              <a
+                class="cs-footer__social-link"
+                *ngFor="let social of infoCompany.caracteristicas"
+                href="{{social.url_red_social}}"
+                target="_blank"
+                rel="noopener noreferrer"
+                [attr.aria-label]="social.nombre_caracteristica">
+                <i class="{{social.logo}}" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="container footer-bottom clearfix">
-    <div class="copyright">
-      &copy; Copyright <strong><span>Corposurgir21</span></strong>. All Rights Reserved
-    </div>
-    <div class="credits">
-      Diseñado por <a href="https://www.linkedin.com/in/diego-alejandro-panqueva-benitez/" target="_blank">Diego Panqueva</a>
+  <div class="cs-footer__bottom">
+    <div class="container">
+      <div class="cs-footer__bottom-inner">
+        <span class="cs-footer__copyright">© {{ infoCompany.nombre_empresa }} — Todos los derechos reservados</span>
+        <span class="cs-footer__entity">Entidad sin ánimo de lucro — Colombia</span>
+      </div>
     </div>
   </div>
 </footer>
-<!-- End Footer section-->

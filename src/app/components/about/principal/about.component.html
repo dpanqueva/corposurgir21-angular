@@ -1,19 +1,45 @@
-<!-- About section-->
-<section id="about" class="bg-green-corporate">
+<section id="about">
+  <div class="cs-about__hero cs-section-hero">
     <div class="container">
-      <h3 class="text-center">-¿Quiénes somos?-</h3>
-      <hr>
+      <span class="section-label">Quiénes somos</span>
+      <h1 class="cs-about__title">Una organización comprometida con el bienestar social en Colombia</h1>
+    </div>
+  </div>
+
+  <div class="cs-about__body cs-section-body">
+    <div class="container">
       <div class="row gx-lg-5">
-        <div class="col-lg-6 col-xxl-4 mb-5" *ngFor="let about of abouts">
-          <div class="card bg-green-corporate border-0 h-100" >
-            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-              <div class="feature bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="{{about.logo}}"></i></div>
-                <h2 class="fs-4 fw-bold">{{about.titulo}}</h2>
-                <p class="mb-0 text-justify">{{about.descripcion}}</p>
+        <div class="col-lg-5">
+          <p class="cs-about__lead">
+            CORPOSURGIR21 es una organización sin ánimo de lucro legalmente constituida
+            en Colombia, orientada a la gestión, articulación y ejecución de proyectos de
+            desarrollo humano, social y territorial, en cooperación con actores públicos y privados.
+          </p>
+          <div class="cs-about__divider"></div>
+        </div>
+
+        <div class="col-lg-6 offset-lg-1">
+          <p class="cs-about__secondary">
+            En Corposurgir21 trabajamos de la mano con las comunidades para generar impacto sostenible y duradero. Nuestra visión se fundamenta en la equidad, la inclusión y el respeto por el medio ambiente.
+          </p>
+          <div class="cs-about__stats">
+            <div class="cs-about__stat" *ngFor="let about of abouts">
+              <i class="{{about.logo}}" aria-hidden="true"></i>
+              <span class="cs-about__stat-number">{{ about.titulo }}</span>
             </div>
-          </div>    
+          </div>
         </div>
       </div>
+
+      <div class="cs-about__pillars">
+        <article class="cs-about__pillar" *ngFor="let about of abouts">
+          <div class="cs-about__pillar-icon">
+            <i class="{{about.logo}}" aria-hidden="true"></i>
+          </div>
+          <h3 class="cs-about__pillar-title">{{about.titulo}}</h3>
+          <p class="cs-about__pillar-desc">{{about.descripcion}}</p>
+        </article>
+      </div>
     </div>
-  </section>
-  <!-- End About section-->
+  </div>
+</section>

@@ -1,29 +1,64 @@
-<section id="donation-table" class="donation-table">
-  <div class="container">
-    <h2 class="text-center">Información para donaciones</h2>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Entidad Bancaria</th>
-                    <th scope="col">Tipo de cuenta</th>
-                    <th scope="col">Número de cuenta</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let donationItem of donations | paginate: { itemsPerPage: 5, currentPage: p }">
-                    <th scope="row">{{donationItem.donacion_id}}</th>
-                    <td>{{donationItem.banco_entidad}}</td>
-                    <td>{{donationItem.tipo_cuenta}}</td>
-                    <td>{{donationItem.numero_cuenta}}</td>
-                </tr>
-            </tbody>
-        </table>
-        <ul class="pagination justify-content-center">
-            <pagination-controls (pageChange)="p = $event" responsive="true" previousLabel="Anterior"
-                nextLabel="Siguiente">
-            </pagination-controls>
-
-        </ul>
+<section id="donation">
+  <div class="cs-donation__hero cs-section-hero">
+    <div class="container">
+      <span class="section-label">Apoya nuestra misión</span>
+      <h1 class="cs-donation__title">Tu aporte transforma vidas</h1>
+      <p class="cs-donation__subtitle">
+        Cada donación nos permite seguir llegando a las comunidades más vulnerables con programas de salud, educación y vivienda.
+      </p>
     </div>
+  </div>
+
+  <div class="cs-donation__body cs-section-body">
+    <div class="container">
+      <div class="row gx-lg-5">
+        <div class="col-lg-5">
+          <div class="cs-donation__content">
+            <p class="cs-donation__impact">
+              Con tu apoyo podemos seguir advancing hacia un Colombia más equitativa. Tu donación es un acto de esperanza que genera cambios duraderos en las vidas de miles de familias.
+            </p>
+            <div class="cs-donation__divider"></div>
+            <a class="cs-donation__cta btn-cs" href="#" role="button">Quiero donate</a>
+          </div>
+        </div>
+
+        <div class="col-lg-4 offset-lg-1">
+          <div class="cs-donation__stat-box">
+            <span class="cs-donation__stat-number">{{ donations?.length || 0 }}</span>
+            <span class="cs-donation__stat-label">medios de pago disponibles para tu aporte</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cs-donation__table-wrapper">
+        <h2 class="cs-donation__table-title">Información para donaciones</h2>
+        <table class="cs-donation__table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Entidad Bancaria</th>
+              <th scope="col">Tipo de cuenta</th>
+              <th scope="col">Número de cuenta</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let donationItem of donations | paginate: { itemsPerPage: 5, currentPage: p }">
+              <th scope="row">{{donationItem.donacion_id}}</th>
+              <td data-label="Entidad Bancaria">{{donationItem.banco_entidad}}</td>
+              <td data-label="Tipo de cuenta">{{donationItem.tipo_cuenta}}</td>
+              <td data-label="Número de cuenta">{{donationItem.numero_cuenta}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="cs-donation__pagination">
+          <pagination-controls
+            (pageChange)="p = $event"
+            responsive="true"
+            previousLabel="Anterior"
+            nextLabel="Siguiente">
+          </pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>

@@ -1,56 +1,50 @@
-<!-- Header section-->
 <section id="header">
-  <header>
-    <!-- Menu section-->
-    <nav class="navbar navbar-expand-sm fixed-top bg-blue-dark-corporative">
-      <!-- <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top bg-blue-dark-corporative">-->
-      <div class="container-fluid">
-        <a class="navbar-brand text-reset" href="#header">Corposurgir21</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse me-auto" id="navbarNav">
-          <div class="menu-user" *ngIf="!isAuthenticated">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link text-reset" routerLinkActive="active" aria-current="page" href="#header">Principal</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-reset" routerLinkActive="active" href="#alliance">Alianzas</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-reset" routerLinkActive="active" href="#about">Quiénes somos</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-reset" routerLinkActive="active" href="#programs">Programas</a>
-              </li>
-              <li class="nav-item" >
-                <a class="nav-link text-reset" routerLinkActive="active" [routerLink]="['/login']">Ingresar</a>
-              </li>
-            </ul>
-          </div>
-          <div class="menu-admin" *ngIf="isAuthenticated">
-            <ul class="navbar-nav navbar-right" id="navbarNav">
-              <li class="nav-item" >
-                <a class="nav-link text-reset" routerLinkActive="active" [routerLink]="['/modulo-administracion']">Principal</a>
-              </li>
-              <li class="dropdown">
-                <a class="btn bg-azul dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">
-                  {{nombre}}
-                </a>
+  <nav class="cs-navbar fixed-top" role="navigation" aria-label="Menú principal">
+    <div class="cs-navbar__inner">
+      <a class="cs-navbar__brand" href="#hero">
+        <img src="./assets/img/corposurgirLogo.png" alt="CORPOSURGIR21" class="cs-navbar__logo">
+      </a>
+      
+      <button 
+        class="navbar-toggler cs-navbar__toggler" 
+        type="button" 
+        data-bs-toggle="collapse" 
+        data-bs-target="#navbarNav" 
+        aria-controls="navbarNav" 
+        aria-expanded="false" 
+        aria-label="Abrir menú de navegación">
+        <i class="bi bi-list" aria-hidden="true"></i>
+      </button>
 
-                <ul class="dropdown-menu">
-                  <button (click)="logout()" class="dropdown-item" type="submit">Salir</button>
-                </ul>
+      <div class="cs-navbar__collapse collapse" id="navbarNav">
+        <div class="cs-navbar__menu" *ngIf="!isAuthenticated">
+          <a class="cs-navbar__link" href="#hero">Inicio</a>
+          <a class="cs-navbar__link" href="#about">Quiénes somos</a>
+          <a class="cs-navbar__link" href="#programs">Líneas de acción</a>
+          <a class="cs-navbar__link" href="#alliance">Alianzas</a>
+          <a class="cs-navbar__link" href="/contactanos">Contacto</a>
+          <a class="cs-navbar__link cs-navbar__link--cta" href="/login">Ingresar</a>
+        </div>
+
+        <div class="cs-navbar__menu cs-navbar__menu--admin" *ngIf="isAuthenticated">
+          <a class="cs-navbar__link" routerLinkActive="active" [routerLink]="['/modulo-administracion']">Principal</a>
+          <div class="cs-navbar__dropdown">
+            <button 
+              class="cs-navbar__dropdown-toggle" 
+              type="button" 
+              data-bs-toggle="dropdown" 
+              aria-expanded="false" 
+              aria-haspopup="true">
+              {{nombre}}
+            </button>
+            <ul class="cs-navbar__dropdown-menu" role="menu">
+              <li>
+                <button (click)="logout()" class="cs-navbar__dropdown-item" type="button">Salir</button>
               </li>
             </ul>
           </div>
         </div>
       </div>
-    </nav>
-    <!-- End Menu section-->
-  </header>
-  <!-- End Header section-->
+    </div>
+  </nav>
 </section>

@@ -133,3 +133,119 @@ height: 60px;
   }
 
 }
+
+/* ==============================================================
+   DESIGN SYSTEM — CORPOSURGIR21
+   ============================================================== */
+
+:root {
+  --cs-primary:      #135A5F;
+  --cs-primary-dark: #0D3E42;
+  --cs-secondary:   #58812C;
+  --cs-accent:       #2297A5;
+
+  --cs-bg:           #FAFAFA;
+  --cs-bg-soft:      #F3F5FA;
+  --cs-text:         #1A1A1A;
+  --cs-text-mid:     #37517E;
+  --cs-muted:        #6B6B6B;
+  --cs-line:         #E5E8E8;
+  --cs-white:        #FFFFFF;
+
+  --font-display:    'Cormorant Garamond', serif;
+  --font-body:       'Inter', sans-serif;
+
+  --section-py:      6rem;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--cs-text);
+  background-color: var(--cs-bg);
+  line-height: 1.75;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  color: var(--cs-text-mid);
+  line-height: 1.25;
+}
+
+.section-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--cs-accent);
+  margin-bottom: 0.75rem;
+}
+
+.cs-section-hero {
+  padding: 5rem 0 3.5rem;
+  border-bottom: 1px solid var(--cs-line);
+}
+
+.cs-section-body {
+  padding: var(--section-py) 0;
+}
+
+.btn-cs {
+  display: inline-block;
+  padding: 0.625rem 1.5rem;
+  background-color: var(--cs-primary);
+  color: var(--cs-white);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 1px solid var(--cs-primary);
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.btn-cs:hover,
+.btn-cs:focus {
+  background-color: var(--cs-primary-dark);
+  border-color: var(--cs-primary-dark);
+  color: var(--cs-white);
+}
+
+.btn-cs-outline {
+  display: inline-block;
+  padding: 0.625rem 1.5rem;
+  background-color: transparent;
+  color: var(--cs-primary);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 1px solid var(--cs-primary);
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.btn-cs-outline:hover,
+.btn-cs-outline:focus {
+  background-color: var(--cs-primary);
+  color: var(--cs-white);
+}
+
+.btn-cs-secondary {
+  display: inline-block;
+  padding: 0.625rem 1.5rem;
+  background-color: var(--cs-secondary);
+  color: var(--cs-white);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 1px solid var(--cs-secondary);
+  cursor: pointer;
+  transition: opacity 0.25s ease;
+}
+
+.btn-cs-secondary:hover,
+.btn-cs-secondary:focus {
+  opacity: 0.85;
+  color: var(--cs-white);
+}

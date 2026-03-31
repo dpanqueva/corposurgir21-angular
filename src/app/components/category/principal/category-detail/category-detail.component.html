@@ -1,25 +1,69 @@
-<div class="container" *ngIf="categories" id="section-category">
-  <div class="content">
-    <div class="p-5 rounded mt-3 bg-gray">
-      <h1 class="title-category">{{categories.nombre | uppercase}}</h1>
-      <p class="lead inf-descrption">{{categories.descripcion}}.</p>
+<div class="cs-detail" *ngIf="categories">
+  <div class="cs-detail__hero cs-section-hero">
+    <div class="container">
+      <a routerLink="/category" class="cs-detail__back">
+        <i class="bi bi-arrow-left" aria-hidden="true"></i>
+        <span>Volver a líneas de acción</span>
+      </a>
+      <div class="cs-detail__hero-inner">
+        <div class="cs-detail__hero-text">
+          <span class="section-label">Línea de acción</span>
+          <h1 class="cs-detail__title">{{categories.nombre | uppercase}}</h1>
+          <p class="cs-detail__summary">{{categories.descripcion}}</p>
+        </div>
+        <div class="cs-detail__hero-icon">
+          <i class="{{categories.logo}}" aria-hidden="true"></i>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="row gx-lg-5">
-    <div class="text-center">
-      <h3>Características</h3>
-    </div>
-    <div class="col-lg-6 col-xxl-4 mb-5" *ngFor="let caracteristica of categories.caracteristicas">
-      
-      <div class="card bg-light border-0 h-100 card-ribbon-wrapper">
-        <div class="ribbon bg-info text-dark text-uppercase" *ngIf="caracteristica.bln_cinta_noticia && (caracteristica.fe_fin_cinta | date) >= (today | date)">
-          ¡Nueva Información!
+
+  <div class="cs-detail__content cs-section-body">
+    <div class="container">
+      <div class="row gx-lg-5">
+        <div class="col-lg-8">
+          <h2 class="cs-detail__section-title">Características</h2>
+
+          <div class="cs-detail__features">
+            <article
+              class="cs-detail__feature"
+              *ngFor="let caracteristica of categories.caracteristicas">
+              <div
+                class="cs-detail__ribbon"
+                *ngIf="caracteristica.bln_cinta_noticia && (caracteristica.fe_fin_cinta | date) >= (today | date)">
+                Nueva información
+              </div>
+              <div class="cs-detail__feature-inner">
+                <div class="cs-detail__feature-icon">
+                  <i class="{{categories.logo}}" aria-hidden="true"></i>
+                </div>
+                <div class="cs-detail__feature-body">
+                  <h3 class="cs-detail__feature-name">{{caracteristica.nombre_caracteristica}}</h3>
+                  <p class="cs-detail__feature-desc">{{caracteristica.descripcion}}</p>
+                </div>
+              </div>
+            </article>
+          </div>
         </div>
-        <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-          <div class="feature bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="{{categories.logo}}"></i></div>
-          <h2 class="fs-4 fw-bold">{{caracteristica.nombre_caracteristica}}</h2>
-          <p class="mb-0">{{caracteristica.descripcion}}</p>
-        </div>
+
+        <aside class="col-lg-3 offset-lg-1 cs-detail__sidebar">
+          <div class="cs-detail__meta">
+            <dl class="cs-detail__meta-list">
+              <div class="cs-detail__meta-item">
+                <dt class="cs-detail__meta-label">Programa</dt>
+                <dd class="cs-detail__meta-value">{{categories.nombre}}</dd>
+              </div>
+              <div class="cs-detail__meta-item">
+                <dt class="cs-detail__meta-label">Categoría</dt>
+                <dd class="cs-detail__meta-value">Social</dd>
+              </div>
+              <div class="cs-detail__meta-item">
+                <dt class="cs-detail__meta-label">Estado</dt>
+                <dd class="cs-detail__meta-value">Activo</dd>
+              </div>
+            </dl>
+          </div>
+        </aside>
       </div>
     </div>
   </div>

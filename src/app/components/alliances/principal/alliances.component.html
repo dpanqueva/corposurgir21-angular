@@ -1,13 +1,32 @@
-<!-- Alliance section-->
-<section id="alliance" class="alliance bg-light-gray">
-  <div class="container">
-    <div class="row" data-aos="zoom-in">
-      <div class="col-lg-4 d-flex align-items-center justify-content-center" *ngFor="let alliance of alliances">
-        <a [routerLink]="['alianzas',alliance.nombre]" class="img">
-          <img src="{{alliance.ruta_imagen}}" class="img-fluid rounded-circle link-img" alt="">
-        </a>  
+<section id="alliance">
+  <div class="cs-alliances__hero cs-section-hero">
+    <div class="container">
+      <div class="cs-alliances__header">
+        <span class="section-label">Alianzas</span>
+        <h1 class="cs-alliances__title">Nuestras Alianzas</h1>
+        <p class="cs-alliances__intro">
+          CORPOSURGIR21 desarrolla sus programas y proyectos en cooperación con entidades
+          públicas, privadas, organizaciones de la sociedad civil y aliados estratégicos.
+        </p>
       </div>
     </div>
   </div>
+
+  <div class="cs-alliances__body cs-section-body">
+    <div class="container">
+      <div class="row g-4" *ngIf="alliances && alliances.length > 0; else noAlliances">
+        <div class="col-lg-3 col-md-4 col-6" *ngFor="let alliance of alliances">
+          <a class="cs-alliance-card" [routerLink]="['alianzas', alliance.nombre]">
+            <div class="cs-alliance-card__logo">
+              <img src="{{alliance.ruta_imagen}}" alt="{{alliance.nombre}}">
+            </div>
+            <span class="cs-alliance-card__name">{{alliance.nombre}}</span>
+          </a>
+        </div>
+      </div>
+      <ng-template #noAlliances>
+        <p class="cs-alliances__empty">No hay alianzas registradas actualmente.</p>
+      </ng-template>
+    </div>
+  </div>
 </section>
-<!-- End Alliance section-->
