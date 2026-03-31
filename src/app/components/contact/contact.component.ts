@@ -5,6 +5,7 @@ import { ContactService } from 'src/app/core/services/contact.service';
 import { MessageService } from 'src/app/core/services/message.service';
 import { environment } from 'src/environments/environment.prod';
 
+
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -12,7 +13,7 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class ContactComponent implements OnInit {
 
-  siteKey: string = "6LeF4ukkAAAAACe3QHY2C8J44oDQHslj1BcNcIiR";
+  siteKey: string = environment.siteKeyReCaptcha;
   captcha: string;
   errors: string[] = [];
 

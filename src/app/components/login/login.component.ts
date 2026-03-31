@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Login } from 'src/app/core/models/login';
 import { LoginService } from 'src/app/core/services/login.service';
 import { MessageService } from 'src/app/core/services/message.service';
+import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -12,13 +13,15 @@ import Swal from 'sweetalert2';
 })
 export class LoginComponent implements OnInit {
 
+  siteKey: string = environment.siteKeyReCaptcha;
+  captcha: string;
   formLoginData: Login = new Login();
-  errors: string[]=[];
+  errors: string[] = [];
 
   constructor(private loginService: LoginService, private router: Router, private messageService: MessageService) { }
 
   ngOnInit(): void {
-    if(this.loginService.isAuthenticated()){
+    if (this.loginService.isAuthenticated()) {
       Swal.fire({
         position: 'center',
         icon: 'info',
@@ -27,24 +30,24 @@ export class LoginComponent implements OnInit {
         timer: 1500
       });
       this.router.navigate(['/modulo-administracion']);
-    }else{
+    } else {
       this.router.navigate(['/login']);
     }
   }
 
-  public loginAccess():void{
+  public loginAccess(): void {
     this.loginService.accessLogin(this.formLoginData).subscribe(
-     {
-        next: (e)=>{
+      {
+        next: (e) => {
           this.loginService.saveToken(e);
           this.loginService.saveUser(e);
-          this.router.navigate(['/modulo-administracion']).then(()=>{window.location.reload()});
-          this.messageService.successFullMessage('Bienvenido '.concat( e.nombre).concat(" ").concat(e.apellido));
+          this.router.navigate(['/modulo-administracion']).then(() => { window.location.reload() });
+          this.messageService.successFullMessage('Bienvenido '.concat(e.nombre).concat(" ").concat(e.apellido));
         },
         error: (e) => {
           this.errorBadRequest(e);
         },
-    });
+      });
 
   }
 
@@ -62,6 +65,13 @@ export class LoginComponent implements OnInit {
       cont++;
     }
     return cont;
+  }
+
+    resolved(response: string){
+    this.captcha= response;
+    if(this.captcha){
+      this.loginAccess();
+    }
   }
 
 }

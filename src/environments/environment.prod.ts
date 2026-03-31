@@ -10,4 +10,5 @@ export const environment = {
   mensaje_no_encontrado: 'Recurso que desea buscar no existe.',
   mensaje_internal_error: 'Ups! Hemos presentado un error, por favor intente más tarde.',
   mensaje_eliminado_error: 'El recurso no se ha eliminado, por favor intente más tarde.',
+  siteKeyReCaptcha: '6LdnSaAsAAAAAM-Y5_9FABeGwLE62WlZc2EtYqjv'
 };
