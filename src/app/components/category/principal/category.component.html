@@ -19,7 +19,7 @@
                 <h2 class="cs-programs__name">{{category.nombre}}</h2>
                 <span
                   class="cs-badge--new"
-                  *ngIf="category.bln_cinta_noticia && (category.fe_fin_cinta | date) >= (today | date)"
+                  *ngIf="shouldShowBadge(category)"
                   aria-label="Nueva información disponible">
                   Nueva información
                 </span>

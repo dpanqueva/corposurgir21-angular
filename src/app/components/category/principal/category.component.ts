@@ -24,4 +24,12 @@ export class CategoryComponent implements OnInit {
     );
   }
 
+  shouldShowBadge(categoria: Category): boolean {
+    if (!categoria.bln_cinta_noticia || !categoria.fe_fin_cinta) {
+      return false;
+    }
+    const endDate = new Date(categoria.fe_fin_cinta);
+    return endDate >= this.today;
+  }
+
 }

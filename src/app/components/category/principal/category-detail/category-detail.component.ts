@@ -31,4 +31,12 @@ export class CategoryDetailComponent implements OnInit {
     });
   }
 
+  shouldShowBadge(caracteristica: any): boolean {
+    if (!caracteristica.bln_cinta_noticia || !caracteristica.fe_fin_cinta) {
+      return false;
+    }
+    const endDate = new Date(caracteristica.fe_fin_cinta);
+    return endDate >= this.today;
+  }
+
 }

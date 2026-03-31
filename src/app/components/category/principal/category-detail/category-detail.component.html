@@ -30,7 +30,7 @@
               *ngFor="let caracteristica of categories.caracteristicas">
               <div
                 class="cs-detail__ribbon"
-                *ngIf="caracteristica.bln_cinta_noticia && (caracteristica.fe_fin_cinta | date) >= (today | date)">
+                *ngIf="shouldShowBadge(caracteristica)">
                 Nueva información
               </div>
               <div class="cs-detail__feature-inner">
